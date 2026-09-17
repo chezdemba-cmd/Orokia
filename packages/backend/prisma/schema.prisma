@@ -1,0 +1,577 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  DIRECTION
+  CENSEUR
+  SECRETAIRE
+  ENSEIGNANT
+  PARENT
+  ELEVE
+}
+
+enum Niveau {
+  PRIMAIRE
+  COLLEGE
+  LYCEE
+}
+
+enum TermStatus {
+  OUVERTE
+  CLOTUREE
+}
+
+enum AttendanceType {
+  PRESENT
+  ABSENT
+  RETARD
+  EXCUSE
+}
+
+enum StatutEmploi {
+  PERMANENT
+  VACATAIRE
+}
+
+enum AnnonceStatut {
+  BROUILLON
+  PROGRAMMEE
+  PUBLIEE
+}
+
+enum SeanceEtat {
+  OK
+  ANNULE
+  DEPLACE
+  CONFLIT
+}
+
+enum AccountEtat {
+  ACTIF
+  SUSPENDU
+}
+
+enum OtpChannel {
+  SMS
+  VOICE
+}
+
+enum ConversationType {
+  DIRECT
+  BROADCAST
+}
+
+model Ecole {
+  id                 String   @id @default(cuid())
+  nom                String
+  adresse            String
+  telephone          String?
+  anneeScolaireActive String
+  createdAt          DateTime @default(now())
+
+  classes  Classe[]
+  profiles Profile[]
+  terms    Term[]
+  teachers Teacher[]
+  students Student[]
+  subjects Subject[]
+  announcements Announcement[]
+  auditLogs AuditLog[]
+
+  @@map("ecoles")
+}
+
+model Account {
+  id                String      @id @default(cuid())
+  telephoneE164     String      @unique
+  passwordHash      String
+  langue            String      @default("fr")
+  twoFactorEnabled  Boolean     @default(false)
+  isSuperAdmin      Boolean     @default(false)
+  lastSeenAt        DateTime?
+  createdAt         DateTime    @default(now())
+
+  profiles      Profile[]
+  otpChallenges OtpChallenge[]
+  refreshTokens RefreshToken[]
+
+  @@map("accounts")
+}
+
+model Profile {
+  id        String      @id @default(cuid())
+  accountId String
+  account   Account     @relation(fields: [accountId], references: [id])
+  ecoleId   String
+  ecole     Ecole       @relation(fields: [ecoleId], references: [id])
+  role      Role
+  etat      AccountEtat @default(ACTIF)
+  createdAt DateTime    @default(now())
+
+  teacher              Teacher?
+  studentLink          Student?           @relation("StudentProfile")
+  guardianLinks        Guardian[]         @relation("GuardianProfile")
+  auditLogsAsActor     AuditLog[]         @relation("AuditActor")
+  sentMessages         Message[]          @relation("MessageSender")
+  conversationMembers  ConversationParticipant[]
+  authoredAnnouncements Announcement[]    @relation("AnnouncementAuthor")
+  savedAttendance      Attendance[]       @relation("AttendanceSaisiPar")
+  teacherAssignmentsAs TeacherAssignment[] @relation("AssignmentTeacherProfile")
+
+  @@map("profiles")
+}
+
+model Teacher {
+  id               String       @id @default(cuid())
+  profileId        String       @unique
+  profile          Profile      @relation(fields: [profileId], references: [id])
+  ecoleId          String
+  ecole            Ecole        @relation(fields: [ecoleId], references: [id])
+  nom              String
+  statutEmploi     StatutEmploi
+  matriculeEmploye String
+  salaireBase      Decimal?     @db.Decimal(12, 2)
+  tauxHoraire      Decimal?     @db.Decimal(12, 2)
+
+  assignments          TeacherAssignment[]
+  classesPrincipal     Classe[]             @relation("ClassePrincipal")
+  timetableSlots       TimetableSlot[]
+  classLogs            ClassLog[]
+  payrollLines         PayrollLine[]
+
+  @@unique([ecoleId, matriculeEmploye])
+  @@map("teachers")
+}
+
+model Classe {
+  id                     String   @id @default(cuid())
+  ecoleId                String
+  ecole                  Ecole    @relation(fields: [ecoleId], references: [id])
+  nom                    String
+  niveau                 Niveau
+  anneeScolaire          String
+  professeurPrincipalId  String?
+  professeurPrincipal    Teacher? @relation("ClassePrincipal", fields: [professeurPrincipalId], references: [id])
+  createdAt              DateTime @default(now())
+
+  students           Student[]
+  assignments        TeacherAssignment[]
+  timetableSlots     TimetableSlot[]
+  grades             Grade[]
+  attendances        Attendance[]
+  classLogs          ClassLog[]
+
+  @@unique([ecoleId, nom, anneeScolaire])
+  @@map("classes")
+}
+
+model Student {
+  id              String   @id @default(cuid())
+  profileId       String?  @unique
+  profile         Profile? @relation("StudentProfile", fields: [profileId], references: [id])
+  ecoleId         String
+  ecole           Ecole    @relation(fields: [ecoleId], references: [id])
+  matricule       String
+  nom             String
+  prenom          String
+  dateNaissance   DateTime
+  classeId        String
+  classe          Classe   @relation(fields: [classeId], references: [id])
+  dateInscription DateTime @default(now())
+
+  guardians    GuardianStudent[]
+  grades       Grade[]
+  attendances  Attendance[]
+  reportCards  ReportCard[]
+  classLogAcks ClassLogAck[]
+  tuitionFees  TuitionFee[]
+
+  @@unique([ecoleId, matricule])
+  @@map("students")
+}
+
+model Guardian {
+  id             String  @id @default(cuid())
+  profileId      String? @unique
+  profile        Profile? @relation("GuardianProfile", fields: [profileId], references: [id])
+  nom            String
+  lien           String
+  telephoneE164  String
+  canalPrefere   String  @default("application")
+
+  students GuardianStudent[]
+
+  @@map("guardians")
+}
+
+model GuardianStudent {
+  guardianId String
+  studentId  String
+  guardian   Guardian @relation(fields: [guardianId], references: [id])
+  student    Student  @relation(fields: [studentId], references: [id])
+
+  @@id([guardianId, studentId])
+  @@map("guardian_students")
+}
+
+model Subject {
+  id      String @id @default(cuid())
+  ecoleId String
+  ecole   Ecole  @relation(fields: [ecoleId], references: [id])
+  nom     String
+
+  assignments TeacherAssignment[]
+  grades      Grade[]
+  timetableSlots TimetableSlot[]
+  classLogs   ClassLog[]
+
+  @@unique([ecoleId, nom])
+  @@map("subjects")
+}
+
+model TeacherAssignment {
+  id            String  @id @default(cuid())
+  teacherId     String
+  teacher       Teacher @relation(fields: [teacherId], references: [id])
+  teacherProfileId String?
+  teacherProfile   Profile? @relation("AssignmentTeacherProfile", fields: [teacherProfileId], references: [id])
+  subjectId     String
+  subject       Subject @relation(fields: [subjectId], references: [id])
+  classeId      String
+  classe        Classe  @relation(fields: [classeId], references: [id])
+  coefficient   Int
+
+  @@unique([teacherId, subjectId, classeId])
+  @@map("teacher_assignments")
+}
+
+model Term {
+  id            String     @id @default(cuid())
+  ecoleId       String
+  ecole         Ecole      @relation(fields: [ecoleId], references: [id])
+  numero        Int
+  anneeScolaire String
+  statut        TermStatus @default(OUVERTE)
+  clotureAt     DateTime?
+
+  grades      Grade[]
+  reportCards ReportCard[]
+
+  @@unique([ecoleId, anneeScolaire, numero])
+  @@map("terms")
+}
+
+model Grade {
+  id            String   @id @default(cuid())
+  studentId     String
+  student       Student  @relation(fields: [studentId], references: [id])
+  subjectId     String
+  subject       Subject  @relation(fields: [subjectId], references: [id])
+  classeId      String
+  classe        Classe   @relation(fields: [classeId], references: [id])
+  termId        String
+  term          Term     @relation(fields: [termId], references: [id])
+  devoir1       Decimal? @db.Decimal(5, 2)
+  devoir2       Decimal? @db.Decimal(5, 2)
+  composition   Decimal? @db.Decimal(5, 2)
+  average       Decimal? @db.Decimal(5, 2)
+  appreciation  String?
+  updatedAt     DateTime @updatedAt
+
+  @@unique([studentId, subjectId, termId])
+  @@map("grades")
+}
+
+model ReportCard {
+  id                    String   @id @default(cuid())
+  studentId             String
+  student               Student  @relation(fields: [studentId], references: [id])
+  termId                String
+  term                  Term     @relation(fields: [termId], references: [id])
+  generalAverage        Decimal? @db.Decimal(5, 2)
+  rank                  Int?
+  nonClasse             Boolean  @default(false)
+  moyenneDeClasse       Decimal? @db.Decimal(5, 2)
+  appreciationGenerale  String?
+  decision              String?
+  verificationId        String   @unique
+  publishedAt           DateTime @default(now())
+
+  lignes ReportCardLine[]
+
+  @@unique([studentId, termId])
+  @@map("report_cards")
+}
+
+model ReportCardLine {
+  id            String     @id @default(cuid())
+  reportCardId  String
+  reportCard    ReportCard @relation(fields: [reportCardId], references: [id])
+  subjectNom    String
+  coefficient   Int
+  devoir1       Decimal?   @db.Decimal(5, 2)
+  devoir2       Decimal?   @db.Decimal(5, 2)
+  composition   Decimal?   @db.Decimal(5, 2)
+  average       Decimal?   @db.Decimal(5, 2)
+  appreciation  String?
+
+  @@map("report_card_lines")
+}
+
+model TimetableSlot {
+  id            String     @id @default(cuid())
+  classeId      String
+  classe        Classe     @relation(fields: [classeId], references: [id])
+  subjectId     String
+  subject       Subject    @relation(fields: [subjectId], references: [id])
+  teacherId     String
+  teacher       Teacher    @relation(fields: [teacherId], references: [id])
+  jour          Int
+  heureDebut    String
+  dureeMinutes  Int
+  salle         String
+  etat          SeanceEtat @default(OK)
+  anneeScolaire String
+
+  attendances Attendance[]
+
+  @@map("timetable_slots")
+}
+
+model Attendance {
+  id            String         @id @default(cuid())
+  studentId     String
+  student       Student        @relation(fields: [studentId], references: [id])
+  classeId      String
+  classe        Classe         @relation(fields: [classeId], references: [id])
+  sessionId     String
+  session       TimetableSlot  @relation(fields: [sessionId], references: [id])
+  date          DateTime       @db.Date
+  type          AttendanceType
+  justificatif  String?
+  saisiParProfileId String?
+  saisiPar      Profile?       @relation("AttendanceSaisiPar", fields: [saisiParProfileId], references: [id])
+  createdAt     DateTime       @default(now())
+
+  escalation EscalationEvent?
+
+  @@unique([studentId, sessionId, date])
+  @@map("attendances")
+}
+
+model EscalationEvent {
+  id            String    @id @default(cuid())
+  attendanceId  String    @unique
+  attendance    Attendance @relation(fields: [attendanceId], references: [id])
+  declencheAt   DateTime  @default(now())
+  escalatedAt   DateTime?
+  destinataires Json
+  statut        String    @default("EN_ATTENTE")
+
+  @@map("escalation_events")
+}
+
+model ClassLog {
+  id        String   @id @default(cuid())
+  classeId  String
+  classe    Classe   @relation(fields: [classeId], references: [id])
+  subjectId String
+  subject   Subject  @relation(fields: [subjectId], references: [id])
+  teacherId String
+  teacher   Teacher  @relation(fields: [teacherId], references: [id])
+  date      DateTime @db.Date
+  titre     String
+  contenu   String
+
+  devoirs Devoir[]
+  acks    ClassLogAck[]
+
+  @@map("class_logs")
+}
+
+model Devoir {
+  id          String   @id @default(cuid())
+  classLogId  String
+  classLog    ClassLog @relation(fields: [classLogId], references: [id])
+  consigne    String
+  echeance    DateTime
+  statut      String   @default("A_RENDRE")
+
+  @@map("devoirs")
+}
+
+model ClassLogAck {
+  id             String   @id @default(cuid())
+  classLogId     String
+  classLog       ClassLog @relation(fields: [classLogId], references: [id])
+  studentId      String
+  student        Student  @relation(fields: [studentId], references: [id])
+  acknowledgedAt DateTime @default(now())
+
+  @@unique([classLogId, studentId])
+  @@map("class_log_acks")
+}
+
+model Conversation {
+  id        String           @id @default(cuid())
+  type      ConversationType
+  nom       String?
+  createdAt DateTime         @default(now())
+
+  participants ConversationParticipant[]
+  messages     Message[]
+
+  @@map("conversations")
+}
+
+model ConversationParticipant {
+  conversationId    String
+  conversation      Conversation @relation(fields: [conversationId], references: [id])
+  profileId         String
+  profile           Profile      @relation(fields: [profileId], references: [id])
+  repliesAllowed    Boolean      @default(true)
+
+  @@id([conversationId, profileId])
+  @@map("conversation_participants")
+}
+
+model Message {
+  id              String       @id @default(cuid())
+  conversationId  String
+  conversation    Conversation @relation(fields: [conversationId], references: [id])
+  senderProfileId String
+  sender          Profile      @relation("MessageSender", fields: [senderProfileId], references: [id])
+  corps           String
+  createdAt       DateTime     @default(now())
+
+  readReceipts MessageReadReceipt[]
+
+  @@map("messages")
+}
+
+model MessageReadReceipt {
+  messageId String
+  message   Message  @relation(fields: [messageId], references: [id])
+  profileId String
+  readAt    DateTime @default(now())
+
+  @@id([messageId, profileId])
+  @@map("message_read_receipts")
+}
+
+model Announcement {
+  id             String        @id @default(cuid())
+  ecoleId        String
+  ecole          Ecole         @relation(fields: [ecoleId], references: [id])
+  titre          String
+  corps          String
+  cible          Json
+  statut         AnnonceStatut @default(BROUILLON)
+  programmeAt    DateTime?
+  publieAt       DateTime?
+  auteurProfileId String
+  auteur         Profile       @relation("AnnouncementAuthor", fields: [auteurProfileId], references: [id])
+  createdAt      DateTime      @default(now())
+
+  @@map("announcements")
+}
+
+model AuditLog {
+  id             String   @id @default(cuid())
+  ecoleId        String
+  ecole          Ecole    @relation(fields: [ecoleId], references: [id])
+  actorProfileId String?
+  actor          Profile? @relation("AuditActor", fields: [actorProfileId], references: [id])
+  action         String
+  entityType     String
+  entityId       String?
+  before         Json?
+  after          Json?
+  motif          String?
+  createdAt      DateTime @default(now())
+
+  @@map("audit_logs")
+}
+
+model OtpChallenge {
+  id            String     @id @default(cuid())
+  accountId     String
+  account       Account    @relation(fields: [accountId], references: [id])
+  profileId     String?
+  codeHash      String
+  channel       OtpChannel @default(SMS)
+  expiresAt     DateTime
+  attempts      Int        @default(0)
+  maxAttempts   Int        @default(5)
+  consumedAt    DateTime?
+  createdAt     DateTime   @default(now())
+
+  @@map("otp_challenges")
+}
+
+model RefreshToken {
+  id         String    @id @default(cuid())
+  accountId  String
+  account    Account   @relation(fields: [accountId], references: [id])
+  profileId  String
+  tokenHash  String    @unique
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  createdAt  DateTime  @default(now())
+
+  @@map("refresh_tokens")
+}
+
+/// Phase 2 (Secrétariat/finance) — schema modeled now, no routes/UI this pass.
+model TuitionFee {
+  id            String   @id @default(cuid())
+  studentId     String
+  student       Student  @relation(fields: [studentId], references: [id])
+  anneeScolaire String
+  montantDu     Decimal  @db.Decimal(12, 2)
+  echeances     Json
+
+  payments Payment[]
+
+  @@unique([studentId, anneeScolaire])
+  @@map("tuition_fees")
+}
+
+model Payment {
+  id                    String     @id @default(cuid())
+  tuitionFeeId          String
+  tuitionFee            TuitionFee @relation(fields: [tuitionFeeId], references: [id])
+  montant               Decimal    @db.Decimal(12, 2)
+  datePaiement          DateTime   @default(now())
+  modePaiement          String
+  referenceTransaction  String?
+  remisPar              String
+  verificationId        String     @unique
+  saisiParProfileId     String
+
+  @@map("payments")
+}
+
+model PayrollLine {
+  id             String   @id @default(cuid())
+  teacherId      String
+  teacher        Teacher  @relation(fields: [teacherId], references: [id])
+  periode        String
+  montantBrut    Decimal  @db.Decimal(12, 2)
+  retenues       Json
+  montantNet     Decimal  @db.Decimal(12, 2)
+  detail         Json
+  verificationId String   @unique
+  valideParProfileId String
+  createdAt      DateTime @default(now())
+
+  @@unique([teacherId, periode])
+  @@map("payroll_lines")
+}

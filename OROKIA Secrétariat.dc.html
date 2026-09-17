@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<![CDATA[<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin:0; font-family:'Manrope', system-ui, sans-serif; background:#F8FAFC; color:#172033; -webkit-font-smoothing:antialiased; }
+  a { color:#2563EB; text-decoration:none; }
+  a:hover { color:#F97316; }
+  table { border-collapse:collapse; }
+</style>
+</helmet>
+
+<div style="display:flex; min-height:100vh; background:#F8FAFC;">
+
+  <aside style="width:250px; flex:none; background:#102A43; color:#fff; display:flex; flex-direction:column; padding:20px 0;">
+    <div style="padding:0 16px 22px;">
+      <div style="background:#fff; border-radius:12px; padding:12px 14px;">
+        <img src="assets/orokia-logo.png" alt="OROKIA" style="display:block; width:100%; height:auto;">
+      </div>
+      <div style="font-size:10.5px; color:#8FA8C4; padding:9px 2px 0;">Espace secrétariat</div>
+    </div>
+    <div style="padding:0 20px 9px; font-size:10px; font-weight:700; letter-spacing:0.1em; color:#5F7A99;">FINANCES</div>
+    <nav style="display:flex; flex-direction:column; gap:2px; padding:0 12px;">
+      <div onClick="{{ go0 }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg0 }}; color: {{ fg0 }};">
+        <span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Tableau de bord</div>
+      <div onClick="{{ go1 }}" style="display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg1 }}; color: {{ fg1 }};">
+        <span style="display:flex; align-items:center; gap:10px;"><span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Frais de scolarité</span>
+        <span style="background:#F97316; color:#fff; font-size:10.5px; font-weight:800; border-radius:20px; padding:1px 7px;">38</span></div>
+      <div onClick="{{ go2 }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg2 }}; color: {{ fg2 }};">
+        <span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Encaissement</div>
+      <div onClick="{{ go3 }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg3 }}; color: {{ fg3 }};">
+        <span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Paie des enseignants</div>
+      <div onClick="{{ go4 }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg4 }}; color: {{ fg4 }};">
+        <span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Bulletin de paie</div>
+    </nav>
+    <div style="margin-top:auto; padding:18px 16px 0;">
+      <div style="background:#16324F; border-radius:11px; padding:13px 14px; font-size:11px; color:#8FA8C4; line-height:1.45;">Trimestre 2 · exercice 2025–2026<br>Clôture de caisse quotidienne à 17h.</div>
+    </div>
+  </aside>
+
+  <div style="flex:1; min-width:0; display:flex; flex-direction:column;">
+    <header style="background:#fff; border-bottom:1px solid #E2E8F0; padding:0 26px; min-height:64px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+      <div style="flex:1; min-width:180px; max-width:340px; background:#F1F5F9; border:1px solid #E2E8F0; border-radius:9px; padding:9px 13px; font-size:13px; color:#94A3B8;">Rechercher un élève, un reçu…</div>
+      <div style="display:flex; align-items:center; gap:10px; margin-left:auto;">
+        <div style="border:1px solid #E2E8F0; border-radius:9px; padding:8px 13px; font-size:12.5px; font-weight:600;">Janvier 2026</div>
+        <div style="width:34px; height:34px; border-radius:50%; background:#F97316; color:#fff; display:flex; align-items:center; justify-content:center; font-size:12.5px; font-weight:700;">MK</div>
+        <div style="display:flex; flex-direction:column;">
+          <div style="font-size:12.5px; font-weight:700;">Mariam Kouyaté</div>
+          <div style="font-size:11px; color:#64748B;">Secrétaire</div>
+        </div>
+      </div>
+    </header>
+
+    <main style="flex:1; min-width:0; padding:26px;">
+      <sc-if value="{{ s0 }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Tableau de bord — finances</h1>
+          <div style="font-size:13px; color:#64748B;">École Awa Danté · 352 élèves · 28 enseignants et personnel</div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px;">
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:12px; font-weight:600; color:#64748B;">Écolage encaissé</div>
+            <div style="font-size:26px; font-weight:800; letter-spacing:-0.03em; line-height:1;">31,2 M</div>
+            <div style="font-size:11.5px; color:#64748B;">FCFA · 82 % du prévisionnel</div>
+          </div>
+          <div style="background:#FFF7ED; border:1px solid #FED7AA; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:12px; font-weight:700; color:#9A3412;">Reste à recouvrer</div>
+            <div style="font-size:26px; font-weight:800; letter-spacing:-0.03em; line-height:1; color:#C2410C;">6,8 M</div>
+            <div style="font-size:11.5px; color:#9A3412;">38 familles · échéance 31 janv.</div>
+          </div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:12px; font-weight:600; color:#64748B;">Masse salariale du mois</div>
+            <div style="font-size:26px; font-weight:800; letter-spacing:-0.03em; line-height:1;">4,15 M</div>
+            <div style="font-size:11.5px; color:#64748B;">FCFA brut · 28 personnes</div>
+          </div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:12px; font-weight:600; color:#64748B;">Paie de janvier</div>
+            <div style="font-size:26px; font-weight:800; letter-spacing:-0.03em; line-height:1; color:#C2410C;">À valider</div>
+            <div style="font-size:11.5px; color:#64748B;">24 / 28 fiches prêtes</div>
+          </div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:12px; font-weight:600; color:#64748B;">Caisse du jour</div>
+            <div style="font-size:26px; font-weight:800; letter-spacing:-0.03em; line-height:1; color:#16A34A;">385 000</div>
+            <div style="font-size:11.5px; color:#64748B;">FCFA · 7 reçus émis</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:16px;">
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:14.5px; font-weight:700;">Recouvrement par niveau</div>
+            <sc-for list="{{ recouvrement }}" as="r" hint-placeholder-count="4">
+              <div style="display:flex; flex-direction:column; gap:5px;">
+                <div style="display:flex; justify-content:space-between; font-size:12.5px;">
+                  <span style="font-weight:600;">{{ r.niveau }}</span>
+                  <span style="color:#64748B;">{{ r.taux }} · {{ r.reste }} restant</span>
+                </div>
+                <div style="height:7px; background:#F1F5F9; border-radius:5px;"><div style="height:100%; border-radius:5px; width: {{ r.taux }}; background: {{ r.couleur }};"></div></div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:12px;">
+            <div style="font-size:14.5px; font-weight:700;">À faire cette semaine</div>
+            <div style="display:flex; flex-direction:column;">
+              <div style="display:flex; gap:12px; padding:11px 0; border-bottom:1px solid #F1F5F9;"><span style="width:7px; height:7px; border-radius:50%; background:#DC2626; margin-top:6px; flex:none; display:block;"></span><div style="display:flex; flex-direction:column; gap:2px;"><div style="font-size:13px; font-weight:600;">Valider la paie de janvier</div><div style="font-size:11.5px; color:#64748B;">4 fiches en attente d'heures supplémentaires</div></div></div>
+              <div style="display:flex; gap:12px; padding:11px 0; border-bottom:1px solid #F1F5F9;"><span style="width:7px; height:7px; border-radius:50%; background:#F97316; margin-top:6px; flex:none; display:block;"></span><div style="display:flex; flex-direction:column; gap:2px;"><div style="font-size:13px; font-weight:600;">Relancer 38 familles</div><div style="font-size:11.5px; color:#64748B;">SMS de rappel avant le 31 janvier</div></div></div>
+              <div style="display:flex; gap:12px; padding:11px 0;"><span style="width:7px; height:7px; border-radius:50%; background:#2563EB; margin-top:6px; flex:none; display:block;"></span><div style="display:flex; flex-direction:column; gap:2px;"><div style="font-size:13px; font-weight:600;">Clôturer la caisse de la semaine</div><div style="font-size:11.5px; color:#64748B;">Rapprochement Orange Money à faire</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+      <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Frais de scolarité</h1>
+            <div style="font-size:13px; color:#64748B;">Écolage annuel en trois tiers · primaire 85 000, collège 110 000, lycée 135 000 FCFA</div>
+          </div>
+          <div style="display:flex; gap:9px; flex-wrap:wrap;">
+            <div style="background:#fff; border:1px solid #CBD5E1; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:600; cursor:pointer;">Exporter</div>
+            <div style="background:#F97316; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">Relancer les retards par SMS</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <div onClick="{{ setFTous }}" style="border-radius:8px; padding:7px 13px; font-size:12.5px; font-weight:600; cursor:pointer; border:1px solid #E2E8F0; background: {{ fTousBg }}; color: {{ fTousFg }};">Tous</div>
+          <div onClick="{{ setFRetard }}" style="border-radius:8px; padding:7px 13px; font-size:12.5px; font-weight:600; cursor:pointer; border:1px solid #E2E8F0; background: {{ fRetardBg }}; color: {{ fRetardFg }};">En retard</div>
+          <div onClick="{{ setFSolde }}" style="border-radius:8px; padding:7px 13px; font-size:12.5px; font-weight:600; cursor:pointer; border:1px solid #E2E8F0; background: {{ fSoldeBg }}; color: {{ fSoldeFg }};">Soldés</div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; overflow:hidden;">
+          <div style="overflow-x:auto;">
+          <table style="width:100%; min-width:820px; font-size:13px;">
+            <thead><tr style="background:#F8FAFC; text-align:left;">
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">ÉLÈVE</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">CLASSE</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">TUTEUR</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:right;">ANNUEL</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:right;">VERSÉ</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:right;">SOLDE</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">ÉTAT</th>
+              <th style="padding:12px 18px; border-bottom:1px solid #E2E8F0;"></th>
+            </tr></thead>
+            <tbody>
+              <sc-for list="{{ familles }}" as="f" hint-placeholder-count="8">
+                <tr style="border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:14px 18px; font-weight:700;">{{ f.eleve }}</td>
+                  <td style="padding:14px 18px; color:#475569;">{{ f.classe }}</td>
+                  <td style="padding:14px 18px; color:#475569;">{{ f.tuteur }}</td>
+                  <td style="padding:14px 18px; text-align:right; font-variant-numeric:tabular-nums; color:#64748B;">{{ f.annuel }}</td>
+                  <td style="padding:14px 18px; text-align:right; font-variant-numeric:tabular-nums;">{{ f.verse }}</td>
+                  <td style="padding:14px 18px; text-align:right; font-variant-numeric:tabular-nums; font-weight:700; color: {{ f.soldeFg }};">{{ f.solde }}</td>
+                  <td style="padding:14px 18px;"><span style="border-radius:20px; padding:3px 10px; font-size:11.5px; font-weight:700; background: {{ f.bg }}; color: {{ f.fg }};">{{ f.etat }}</span></td>
+                  <td style="padding:14px 18px; text-align:right;"><span onClick="{{ go2 }}" style="color:#2563EB; font-weight:600; cursor:pointer;">Encaisser</span></td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:13px 18px; border-top:1px solid #E2E8F0; font-size:12px; color:#64748B; flex-wrap:wrap; gap:10px;">
+            <span>{{ nbFamilles }} lignes affichées · montants en FCFA</span>
+            <span>Échéance du 2<sup>e</sup> tiers : 31 janvier 2026</span>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Encaissement</h1>
+          <div style="font-size:13px; color:#64748B;">Aïchata Bagayoko · 11<sup>e</sup> TSE · 2<sup>e</sup> tiers de l'écolage</div>
+        </div>
+
+        <div style="display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap;">
+          <div style="flex:1 1 380px; min-width:320px; background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:20px 22px; display:flex; flex-direction:column; gap:16px;">
+            <div style="font-size:14.5px; font-weight:700;">Nouveau versement</div>
+
+            <div style="display:flex; flex-direction:column; gap:7px;">
+              <span style="font-size:11px; font-weight:700; letter-spacing:0.05em; color:#64748B;">MONTANT REÇU — FCFA</span>
+              <input value="{{ montant }}" onChange="{{ setMontant }}" style="font-family:inherit; font-size:20px; font-weight:800; padding:13px 15px; border:1.5px solid #2563EB; border-radius:10px; color:#172033; width:100%;">
+              <span style="font-size:11.5px; color:#64748B;">Solde après ce versement : {{ soldeApres }} FCFA</span>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:7px;">
+              <span style="font-size:11px; font-weight:700; letter-spacing:0.05em; color:#64748B;">MOYEN DE PAIEMENT</span>
+              <div style="display:flex; gap:7px; flex-wrap:wrap;">
+                <sc-for list="{{ moyens }}" as="m" hint-placeholder-count="4">
+                  <span onClick="{{ m.select }}" style="border-radius:9px; padding:10px 14px; font-size:12.5px; font-weight:700; cursor:pointer; min-height:42px; display:flex; align-items:center; background: {{ m.bg }}; color: {{ m.fg }}; border:1px solid {{ m.bd }};">{{ m.nom }}</span>
+                </sc-for>
+              </div>
+            </div>
+
+            <sc-if value="{{ refVisible }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; flex-direction:column; gap:7px;">
+                <span style="font-size:11px; font-weight:700; letter-spacing:0.05em; color:#64748B;">{{ refLabel }}</span>
+                <div style="border:1.5px solid #E2E8F0; border-radius:10px; padding:13px 15px; font-size:14px; font-weight:600;">{{ refValeur }}</div>
+              </div>
+            </sc-if>
+
+            <div style="display:flex; flex-direction:column; gap:7px;">
+              <span style="font-size:11px; font-weight:700; letter-spacing:0.05em; color:#64748B;">REMIS PAR</span>
+              <div style="border:1.5px solid #E2E8F0; border-radius:10px; padding:13px 15px; font-size:14px; font-weight:600;">M. Modibo Bagayoko — père</div>
+            </div>
+
+            <div onClick="{{ emettre }}" style="background:#16A34A; color:#fff; border-radius:11px; padding:14px; font-size:14px; font-weight:800; text-align:center; cursor:pointer; min-height:48px;">Encaisser et imprimer le reçu</div>
+          </div>
+
+          <div style="flex:1 1 300px; min-width:280px; display:flex; flex-direction:column; gap:16px;">
+            <sc-if value="{{ recuEmis }}" hint-placeholder-val="{{ true }}">
+            <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:22px; display:flex; flex-direction:column; gap:14px; color:#111827;">
+              <div style="display:flex; align-items:center; gap:12px; border-bottom:2px solid #102A43; padding-bottom:12px;">
+                <img src="assets/orokia-logo.png" alt="OROKIA" style="height:26px; width:auto; display:block;">
+                <div style="display:flex; flex-direction:column; gap:1px; border-left:1px solid #CBD5E1; padding-left:12px;">
+                  <span style="font-size:12px; font-weight:800;">École Awa Danté</span>
+                  <span style="font-size:10px; color:#4B5563;">Médina Coura, Bamako</span>
+                </div>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                <span style="font-size:13px; font-weight:800;">REÇU DE PAIEMENT</span>
+                <span style="font-size:11px; color:#4B5563;">REC-2026-0413</span>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:0; font-size:11.5px;">
+                <div style="display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid #E5E7EB;"><span style="color:#6B7280;">Élève</span><span style="font-weight:700;">Aïchata Bagayoko</span></div>
+                <div style="display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid #E5E7EB;"><span style="color:#6B7280;">Classe</span><span style="font-weight:700;">11ᵉ TSE</span></div>
+                <div style="display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid #E5E7EB;"><span style="color:#6B7280;">Objet</span><span style="font-weight:700;">2ᵉ tiers 2025–2026</span></div>
+                <div style="display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid #E5E7EB;"><span style="color:#6B7280;">Moyen</span><span style="font-weight:700;">{{ moyenNom }}</span></div>
+                <div style="display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid #E5E7EB;"><span style="color:#6B7280;">Montant reçu</span><span style="font-weight:800; font-size:14px;">{{ montant }} FCFA</span></div>
+                <div style="display:flex; justify-content:space-between; padding:7px 0;"><span style="color:#6B7280;">Solde restant</span><span style="font-weight:700;">{{ soldeApres }} FCFA</span></div>
+              </div>
+              <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:14px; padding-top:6px;">
+                <span style="width:50px; height:50px; background:#111827; flex:none; display:block;"></span>
+                <span style="display:flex; flex-direction:column; gap:18px; align-items:center;"><span style="font-size:10px; color:#4B5563;">Le secrétariat</span><span style="border-top:1px solid #9CA3AF; width:120px; font-size:9.5px; color:#6B7280; padding-top:3px; text-align:center;">Mariam Kouyaté</span></span>
+              </div>
+              <div onClick="{{ nouveau }}" style="border:1px solid #CBD5E1; border-radius:9px; padding:10px; font-size:12.5px; font-weight:700; text-align:center; cursor:pointer; color:#475569;">Nouvel encaissement</div>
+            </div>
+            </sc-if>
+
+            <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:12px;">
+              <div style="font-size:14.5px; font-weight:700;">Reçus du jour</div>
+              <sc-for list="{{ recus }}" as="r" hint-placeholder-count="4">
+                <div style="display:flex; align-items:center; gap:12px; padding-bottom:10px; border-bottom:1px solid #F1F5F9;">
+                  <span style="display:flex; flex-direction:column; gap:2px; flex:1; min-width:0;">
+                    <span style="font-size:12.5px; font-weight:700;">{{ r.eleve }}</span>
+                    <span style="font-size:11px; color:#64748B;">{{ r.num }} · {{ r.moyen }} · {{ r.heure }}</span>
+                  </span>
+                  <span style="font-size:13px; font-weight:800; flex:none; font-variant-numeric:tabular-nums;">{{ r.montant }}</span>
+                </div>
+              </sc-for>
+              <div style="display:flex; justify-content:space-between; font-size:12.5px; padding-top:2px;">
+                <span style="color:#64748B;">Total encaissé aujourd'hui</span>
+                <span style="font-weight:800;">212 000 FCFA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Paie des enseignants</h1>
+            <div style="font-size:13px; color:#64748B;">Janvier 2026 · permanents au salaire de base, vacataires à l'heure · montants en FCFA</div>
+          </div>
+          <div style="display:flex; gap:9px; flex-wrap:wrap;">
+            <div style="background:#fff; border:1px solid #CBD5E1; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:600; cursor:pointer;">Importer les heures</div>
+            <div onClick="{{ validerPaie }}" style="color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer; background: {{ paieBg }};">{{ paieLabel }}</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px;">
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:5px;"><span style="font-size:12px; color:#64748B; font-weight:600;">Brut des 8 fiches affichées</span><span style="font-size:24px; font-weight:800;">{{ totalBrut }}</span><span style="font-size:11.5px; color:#64748B;">Établissement : 4 150 000</span></div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:5px;"><span style="font-size:12px; color:#64748B; font-weight:600;">Net des 8 fiches affichées</span><span style="font-size:24px; font-weight:800; color:#16A34A;">{{ totalNet }}</span><span style="font-size:11.5px; color:#64748B;">Établissement : 3 731 500</span></div>
+          <div style="background:#FFF7ED; border:1px solid #FED7AA; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:5px;"><span style="font-size:12px; color:#9A3412; font-weight:700;">Fiches à compléter</span><span style="font-size:24px; font-weight:800; color:#C2410C;">2</span></div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:5px;"><span style="font-size:12px; color:#64748B; font-weight:600;">Date de virement</span><span style="font-size:24px; font-weight:800;">28 janv.</span></div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; overflow:hidden;">
+          <div style="overflow-x:auto;">
+          <table style="width:100%; min-width:900px; font-size:13px;">
+            <thead><tr style="background:#F8FAFC; text-align:left;">
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">ENSEIGNANT</th>
+              <th style="padding:12px 14px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">STATUT</th>
+              <th style="padding:12px 14px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:right;">BASE</th>
+              <th style="padding:12px 14px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">HEURES SUPP.</th>
+              <th style="padding:12px 14px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:right;">BRUT</th>
+              <th style="padding:12px 14px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:right;">RETENUES</th>
+              <th style="padding:12px 14px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:right;">NET</th>
+              <th style="padding:12px 14px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">ÉTAT</th>
+              <th style="padding:12px 18px; border-bottom:1px solid #E2E8F0;"></th>
+            </tr></thead>
+            <tbody>
+              <sc-for list="{{ paie }}" as="p" hint-placeholder-count="8">
+                <tr style="border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:13px 18px;"><span style="display:flex; flex-direction:column; gap:2px;"><span style="font-weight:700;">{{ p.nom }}</span><span style="font-size:11.5px; color:#64748B;">{{ p.poste }}</span></span></td>
+                  <td style="padding:13px 14px; font-weight:600; color: {{ p.typeFg }};">{{ p.type }}</td>
+                  <td style="padding:13px 14px; text-align:right; font-variant-numeric:tabular-nums; color:#475569;">{{ p.base }}</td>
+                  <td style="padding:13px 14px; color:#475569;">{{ p.hs }}</td>
+                  <td style="padding:13px 14px; text-align:right; font-variant-numeric:tabular-nums; font-weight:600;">{{ p.brut }}</td>
+                  <td style="padding:13px 14px; text-align:right; font-variant-numeric:tabular-nums; color:#991B1B;">{{ p.retenue }}</td>
+                  <td style="padding:13px 14px; text-align:right; font-variant-numeric:tabular-nums; font-weight:800;">{{ p.net }}</td>
+                  <td style="padding:13px 14px;"><span style="border-radius:20px; padding:3px 10px; font-size:11.5px; font-weight:700; background: {{ p.bg }}; color: {{ p.fg }};">{{ p.etat }}</span></td>
+                  <td style="padding:13px 18px; text-align:right;"><span onClick="{{ p.voir }}" style="color:#2563EB; font-weight:600; cursor:pointer;">Fiche</span></td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+          </div>
+          <div style="padding:13px 18px; border-top:1px solid #E2E8F0; font-size:12px; color:#64748B;">8 lignes sur 28 · les heures supplémentaires sont reprises du cahier d'appel et de l'emploi du temps validé</div>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ s4 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:16px; align-items:center;">
+        <div style="width:100%; max-width:800px; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:3px;">
+            <h1 style="margin:0; font-size:21px; font-weight:800; letter-spacing:-0.02em;">Bulletin de paie</h1>
+            <div style="font-size:12.5px; color:#64748B;">Janvier 2026 · format A4 · remis en main propre ou par e-mail</div>
+          </div>
+          <div style="display:flex; gap:9px; flex-wrap:wrap;">
+            <div onClick="{{ go3 }}" style="background:#fff; border:1px solid #CBD5E1; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:600; cursor:pointer;">Retour</div>
+            <div style="background:#2563EB; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">Exporter en PDF</div>
+          </div>
+        </div>
+
+        <div style="width:100%; max-width:800px; background:#fff; border:1px solid #E2E8F0; box-shadow:0 2px 14px rgba(16,42,67,0.07); padding:40px 44px; display:flex; flex-direction:column; gap:20px; color:#111827;">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:20px; border-bottom:2px solid #102A43; padding-bottom:16px; flex-wrap:wrap;">
+            <div style="display:flex; gap:14px; align-items:center;">
+              <img src="assets/orokia-logo.png" alt="OROKIA" style="height:36px; width:auto; display:block;">
+              <div style="display:flex; flex-direction:column; gap:2px; border-left:1px solid #CBD5E1; padding-left:14px;">
+                <div style="font-size:13.5px; font-weight:800;">École Awa Danté</div>
+                <div style="font-size:10.5px; color:#4B5563;">Médina Coura, Bamako · Établissement privé</div>
+                <div style="font-size:10.5px; color:#4B5563;">NIF 082 341 998 M</div>
+              </div>
+            </div>
+            <div style="text-align:right; display:flex; flex-direction:column; gap:2px;">
+              <div style="font-size:14px; font-weight:800;">BULLETIN DE PAIE</div>
+              <div style="font-size:11px; color:#4B5563;">Janvier 2026 · payé le 28/01/2026</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:14px; background:#F8FAFC; border:1px solid #E5E7EB; padding:14px 16px;">
+            <div style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:9.5px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">SALARIÉ</span><span style="font-size:13px; font-weight:700;">Sékou Diallo</span></div>
+            <div style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:9.5px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">MATRICULE</span><span style="font-size:13px; font-weight:700;">ENS-014</span></div>
+            <div style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:9.5px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">FONCTION</span><span style="font-size:13px; font-weight:700;">Enseignant · Mathématiques</span></div>
+            <div style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:9.5px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">STATUT</span><span style="font-size:13px; font-weight:700;">Permanent · depuis 2019</span></div>
+          </div>
+
+          <table style="width:100%; font-size:11.5px;">
+            <thead><tr style="background:#102A43; color:#fff; text-align:left;">
+              <th style="padding:8px 12px; font-weight:700;">RUBRIQUE</th>
+              <th style="padding:8px 10px; font-weight:700; text-align:center;">BASE</th>
+              <th style="padding:8px 10px; font-weight:700; text-align:center;">TAUX</th>
+              <th style="padding:8px 12px; font-weight:700; text-align:right;">GAIN</th>
+              <th style="padding:8px 12px; font-weight:700; text-align:right;">RETENUE</th>
+            </tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #E5E7EB;"><td style="padding:8px 12px; font-weight:600;">Salaire de base</td><td style="padding:8px 10px; text-align:center;">1 mois</td><td style="padding:8px 10px; text-align:center;">—</td><td style="padding:8px 12px; text-align:right; font-variant-numeric:tabular-nums;">185 000</td><td style="padding:8px 12px;"></td></tr>
+              <tr style="border-bottom:1px solid #E5E7EB;"><td style="padding:8px 12px; font-weight:600;">Heures supplémentaires</td><td style="padding:8px 10px; text-align:center;">6 h</td><td style="padding:8px 10px; text-align:center;">3 500</td><td style="padding:8px 12px; text-align:right; font-variant-numeric:tabular-nums;">21 000</td><td style="padding:8px 12px;"></td></tr>
+              <tr style="border-bottom:1px solid #E5E7EB;"><td style="padding:8px 12px; font-weight:600;">Indemnité de transport</td><td style="padding:8px 10px; text-align:center;">1 mois</td><td style="padding:8px 10px; text-align:center;">—</td><td style="padding:8px 12px; text-align:right; font-variant-numeric:tabular-nums;">15 000</td><td style="padding:8px 12px;"></td></tr>
+              <tr style="border-bottom:1px solid #E5E7EB;"><td style="padding:8px 12px; font-weight:600;">Prime de responsabilité — professeur principal</td><td style="padding:8px 10px; text-align:center;">1 mois</td><td style="padding:8px 10px; text-align:center;">—</td><td style="padding:8px 12px; text-align:right; font-variant-numeric:tabular-nums;">10 000</td><td style="padding:8px 12px;"></td></tr>
+              <tr style="border-bottom:1px solid #E5E7EB;"><td style="padding:8px 12px; font-weight:600;">Cotisation INPS — part salariale</td><td style="padding:8px 10px; text-align:center;">231 000</td><td style="padding:8px 10px; text-align:center;">3,6 %</td><td style="padding:8px 12px;"></td><td style="padding:8px 12px; text-align:right; font-variant-numeric:tabular-nums;">8 316</td></tr>
+              <tr style="border-bottom:1px solid #E5E7EB;"><td style="padding:8px 12px; font-weight:600;">Impôt sur les traitements et salaires</td><td style="padding:8px 10px; text-align:center;">231 000</td><td style="padding:8px 10px; text-align:center;">barème</td><td style="padding:8px 12px;"></td><td style="padding:8px 12px; text-align:right; font-variant-numeric:tabular-nums;">14 850</td></tr>
+              <tr style="background:#F3F4F6; border-top:2px solid #102A43;">
+                <td style="padding:9px 12px; font-weight:800;" colspan="3">TOTAUX</td>
+                <td style="padding:9px 12px; text-align:right; font-weight:800; font-variant-numeric:tabular-nums;">231 000</td>
+                <td style="padding:9px 12px; text-align:right; font-weight:800; font-variant-numeric:tabular-nums;">23 166</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:12px;">
+            <div style="border:1px solid #E5E7EB; padding:12px 14px; display:flex; flex-direction:column; gap:3px;"><span style="font-size:9.5px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">BRUT</span><span style="font-size:17px; font-weight:800;">231 000 FCFA</span></div>
+            <div style="border:1px solid #E5E7EB; padding:12px 14px; display:flex; flex-direction:column; gap:3px;"><span style="font-size:9.5px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">RETENUES</span><span style="font-size:17px; font-weight:800;">23 166 FCFA</span></div>
+            <div style="border:2px solid #102A43; padding:12px 14px; display:flex; flex-direction:column; gap:3px;"><span style="font-size:9.5px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">NET À PAYER</span><span style="font-size:17px; font-weight:800;">207 834 FCFA</span></div>
+            <div style="border:1px solid #E5E7EB; padding:12px 14px; display:flex; flex-direction:column; gap:3px;"><span style="font-size:9.5px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">MODE DE PAIEMENT</span><span style="font-size:13px; font-weight:800;">Virement BDM-SA</span></div>
+          </div>
+
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; padding-top:6px; flex-wrap:wrap;">
+            <div style="display:flex; gap:14px; align-items:flex-end;">
+              <span style="width:58px; height:58px; background:#111827; flex:none; display:block;"></span>
+              <span style="display:flex; flex-direction:column; gap:2px; font-size:10px; color:#4B5563; line-height:1.5;">
+                <span style="font-weight:700; color:#111827;">Vérification du document</span>
+                <span>PAIE-2026-01-ENS014-3M9P</span>
+                <span>verifier.orokia.ml</span>
+              </span>
+            </div>
+            <div style="display:flex; gap:30px; flex-wrap:wrap;">
+              <span style="display:flex; flex-direction:column; gap:24px; align-items:center;"><span style="font-size:10px; color:#4B5563;">Le secrétariat</span><span style="border-top:1px solid #9CA3AF; width:140px; font-size:9.5px; color:#6B7280; padding-top:3px; text-align:center;">Mariam Kouyaté</span></span>
+              <span style="display:flex; flex-direction:column; gap:24px; align-items:center;"><span style="font-size:10px; color:#4B5563;">La direction · cachet</span><span style="border-top:1px solid #9CA3AF; width:140px; font-size:9.5px; color:#6B7280; padding-top:3px; text-align:center;">Mme Aminata Dolo</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+    </main>
+  </div>
+</div>]]>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const RECOUVREMENT = [
+  { niveau: 'Primaire — 1ʳᵉ à 6ᵉ année', taux: '86%', reste: '1,9 M', couleur: '#16A34A' },
+  { niveau: 'Collège — 7ᵉ à 9ᵉ', taux: '79%', reste: '2,6 M', couleur: '#2563EB' },
+  { niveau: 'Lycée — 10ᵉ à 12ᵉ', taux: '74%', reste: '2,3 M', couleur: '#F97316' }
+];
+
+const FAMILLES = [
+  { eleve: 'Aïchata Bagayoko', classe: '11ᵉ TSE', tuteur: 'M. Modibo Bagayoko', annuel: '135 000', verse: '90 000', solde: '45 000', etat: 'À jour' },
+  { eleve: 'Ismaël Bagayoko', classe: '8ᵉ A', tuteur: 'M. Modibo Bagayoko', annuel: '110 000', verse: '73 000', solde: '37 000', etat: 'À jour' },
+  { eleve: 'Boubacar Sissoko', classe: '11ᵉ TSE', tuteur: 'Mme Oumou Sissoko', annuel: '135 000', verse: '45 000', solde: '90 000', etat: 'En retard' },
+  { eleve: 'Fanta Diakité', classe: '11ᵉ TSE', tuteur: 'M. Yacouba Diakité', annuel: '135 000', verse: '135 000', solde: '0', etat: 'Soldé' },
+  { eleve: 'Salif Koné', classe: '4ᵉ année A', tuteur: 'Mme Bintou Koné', annuel: '85 000', verse: '28 000', solde: '57 000', etat: 'En retard' },
+  { eleve: 'Awa Sanogo', classe: '2ᵉ année A', tuteur: 'M. Bakary Sanogo', annuel: '85 000', verse: '85 000', solde: '0', etat: 'Soldé' },
+  { eleve: 'Mariam Traoré', classe: '11ᵉ TSE', tuteur: 'M. Salif Traoré', annuel: '135 000', verse: '90 000', solde: '45 000', etat: 'À jour' },
+  { eleve: 'Ousmane Dembélé', classe: '9ᵉ B', tuteur: 'Mme Fatim Dembélé', annuel: '110 000', verse: '36 000', solde: '74 000', etat: 'En retard' }
+];
+
+class Component extends DCLogic {
+  state = { screen: 0, filtre: 'tous', moyen: 0, montant: '45 000', recu: false, paieValidee: false };
+  renderVals() {
+    const st = this.state, out = { recouvrement: RECOUVREMENT };
+    const ETAT = { 'Soldé': ['#DCFCE7', '#166534'], 'À jour': ['#DBEAFE', '#1E40AF'], 'En retard': ['#FEE2E2', '#991B1B'] };
+    const fchip = k => ({
+      bg: st.filtre === k ? '#102A43' : '#FFFFFF',
+      fg: st.filtre === k ? '#FFFFFF' : '#475569',
+      set: () => this.setState({ filtre: k })
+    });
+    const ft = fchip('tous'), fr = fchip('retard'), fs = fchip('solde');
+    out.fTousBg = ft.bg; out.fTousFg = ft.fg; out.setFTous = ft.set;
+    out.fRetardBg = fr.bg; out.fRetardFg = fr.fg; out.setFRetard = fr.set;
+    out.fSoldeBg = fs.bg; out.fSoldeFg = fs.fg; out.setFSolde = fs.set;
+    const vis = FAMILLES.filter(f => st.filtre === 'tous' || (st.filtre === 'retard' ? f.etat === 'En retard' : f.etat === 'Soldé'));
+    out.familles = vis.map(f => {
+      const t = ETAT[f.etat];
+      return { ...f, bg: t[0], fg: t[1], soldeFg: f.solde === '0' ? '#94A3B8' : '#172033' };
+    });
+    out.nbFamilles = vis.length;
+
+    const MOYENS = ['Espèces', 'Orange Money', 'Moov Money', 'Virement bancaire'];
+    out.moyens = MOYENS.map((nom, i) => ({
+      nom, select: () => this.setState({ moyen: i }),
+      bg: st.moyen === i ? '#2563EB' : '#FFFFFF',
+      fg: st.moyen === i ? '#FFFFFF' : '#475569',
+      bd: st.moyen === i ? '#2563EB' : '#E2E8F0'
+    }));
+    out.moyenNom = MOYENS[st.moyen];
+    out.refVisible = st.moyen === 1 || st.moyen === 2 || st.moyen === 3;
+    out.refLabel = st.moyen === 3 ? 'RÉFÉRENCE DU VIREMENT' : 'NUMÉRO DE TRANSACTION';
+    out.refValeur = st.moyen === 3 ? 'BDM-2026-01-4417' : 'OM-778-2041-9';
+    out.montant = st.montant;
+    out.setMontant = e => this.setState({ montant: e.target.value });
+    out.recuEmis = st.recu;
+    out.emettre = () => this.setState({ recu: true });
+    out.nouveau = () => this.setState({ recu: false, montant: '45 000' });
+    const m = parseInt(String(st.montant).replace(/[^0-9]/g, ''), 10) || 0;
+    out.soldeApres = Math.max(0, 45000 - m).toLocaleString('fr-FR').replace(/\u202f/g, ' ');
+    const PAIE = [
+      { nom: 'Sékou Diallo', poste: 'Mathématiques', type: 'Permanent', base: 185000, hs: 6, ths: 3500, retenue: 0, etat: 'Prêt' },
+      { nom: 'Cheick Traoré', poste: 'Physique-Chimie', type: 'Permanent', base: 180000, hs: 2, ths: 3500, retenue: 12000, etat: 'Prêt' },
+      { nom: 'Assitan Coulibaly', poste: 'Français', type: 'Permanent', base: 175000, hs: 4, ths: 3500, retenue: 0, etat: 'Prêt' },
+      { nom: 'Fatoumata Sidibé', poste: 'SVT', type: 'Permanent', base: 172000, hs: 0, ths: 3500, retenue: 0, etat: 'Prêt' },
+      { nom: 'Moussa Keïta', poste: 'Anglais', type: 'Vacataire', base: 0, hs: 38, ths: 3000, retenue: 0, etat: 'À compléter' },
+      { nom: 'Oumar Cissé', poste: 'Informatique', type: 'Vacataire', base: 0, hs: 24, ths: 3000, retenue: 0, etat: 'Prêt' },
+      { nom: 'Rokia Touré', poste: '1ʳᵉ année A', type: 'Permanent', base: 145000, hs: 0, ths: 3000, retenue: 0, etat: 'Prêt' },
+      { nom: 'Lassine Koné', poste: '3ᵉ année A', type: 'Permanent', base: 142000, hs: 3, ths: 3000, retenue: 8000, etat: 'À compléter' }
+    ];
+    const fcfa = n => n.toLocaleString('fr-FR').replace(/\u202f/g, ' ');
+    let totalBrut = 0, totalNet = 0;
+    out.paie = PAIE.map(p => {
+      const brut = p.base + p.hs * p.ths;
+      const net = brut - p.retenue;
+      totalBrut += brut; totalNet += net;
+      const t = p.etat === 'Prêt' ? ['#DCFCE7', '#166534'] : ['#FEF3C7', '#92400E'];
+      return { nom: p.nom, poste: p.poste, type: p.type,
+        base: p.base ? fcfa(p.base) : '—',
+        hs: p.hs ? p.hs + ' h × ' + fcfa(p.ths) : '—',
+        brut: fcfa(brut), retenue: p.retenue ? '−' + fcfa(p.retenue) : '—',
+        net: fcfa(net), etat: p.etat, bg: t[0], fg: t[1],
+        typeFg: p.type === 'Vacataire' ? '#C2410C' : '#475569',
+        voir: () => this.setState({ screen: 4 }) };
+    });
+    out.totalBrut = fcfa(totalBrut);
+    out.totalNet = fcfa(totalNet);
+    out.paieValidee = st.paieValidee;
+    out.validerPaie = () => this.setState(s => ({ paieValidee: !s.paieValidee }));
+    out.paieLabel = st.paieValidee ? 'Paie validée — virements programmés' : 'Valider la paie de janvier';
+    out.paieBg = st.paieValidee ? '#16A34A' : '#2563EB';
+
+    out.recus = [
+      { num: 'REC-2026-0412', eleve: 'Awa Sanogo', montant: '85 000', moyen: 'Orange Money', heure: '11:24' },
+      { num: 'REC-2026-0411', eleve: 'Fanta Diakité', montant: '45 000', moyen: 'Espèces', heure: '10:05' },
+      { num: 'REC-2026-0410', eleve: 'Mariam Traoré', montant: '45 000', moyen: 'Espèces', heure: '09:38' },
+      { num: 'REC-2026-0409', eleve: 'Ismaël Bagayoko', montant: '37 000', moyen: 'Moov Money', heure: '08:52' }
+    ];
+    for (let i = 0; i < 5; i++) {
+      out['go' + i] = () => this.setState({ screen: i });
+      out['s' + i] = st.screen === i;
+      out['bg' + i] = st.screen === i ? '#173A5E' : 'transparent';
+      out['fg' + i] = st.screen === i ? '#FFFFFF' : '#C6D6E8';
+    }
+    return out;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+build/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+.vite/
+.turbo/
+coverage/
+packages/backend/prisma/dev.db
+pgdata/

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<![CDATA[<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin:0; font-family:'Manrope', system-ui, sans-serif; background:#F8FAFC; color:#172033; -webkit-font-smoothing:antialiased; }
+  a { color:#2563EB; text-decoration:none; }
+  a:hover { color:#F97316; }
+  @keyframes dsPulse { 0%,100% { opacity:1 } 50% { opacity:0.45 } }
+</style>
+</helmet>
+
+<div style="max-width:1180px; margin:0 auto; padding:36px 28px 60px; display:flex; flex-direction:column; gap:38px;">
+
+  <div style="display:flex; align-items:flex-end; gap:22px; flex-wrap:wrap; padding-bottom:22px; border-bottom:1px solid #E2E8F0;">
+    <img src="assets/orokia-logo.png" alt="OROKIA" style="height:44px; width:auto; display:block;">
+    <div style="display:flex; flex-direction:column; gap:4px;">
+      <div style="font-size:19px; font-weight:800; letter-spacing:-0.01em;">Design system</div>
+      <div style="font-size:13px; color:#64748B;">Couleurs, typographie, composants et états — base commune au web et au mobile</div>
+    </div>
+  </div>
+
+  <!-- COULEURS -->
+  <section style="display:flex; flex-direction:column; gap:16px;">
+    <div style="display:flex; align-items:baseline; gap:12px;">
+      <h2 style="margin:0; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Couleurs</h2>
+      <span style="font-size:12.5px; color:#64748B;">Bleu institutionnel pour la structure, orange chaud pour l'action et l'échéance</span>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:12px;">
+      <sc-for list="{{ couleurs }}" as="c" hint-placeholder-count="9">
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:12px; overflow:hidden;">
+          <div style="height:72px; background: {{ c.hex }};"></div>
+          <div style="padding:12px 13px; display:flex; flex-direction:column; gap:3px;">
+            <span style="font-size:13px; font-weight:700;">{{ c.nom }}</span>
+            <span style="font-size:11.5px; color:#64748B; font-variant-numeric:tabular-nums;">{{ c.hex }}</span>
+            <span style="font-size:11px; color:#94A3B8; line-height:1.45;">{{ c.usage }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHIE -->
+  <section style="display:flex; flex-direction:column; gap:16px;">
+    <div style="display:flex; align-items:baseline; gap:12px;">
+      <h2 style="margin:0; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Typographie</h2>
+      <span style="font-size:12.5px; color:#64748B;">Manrope — une seule famille, cinq graisses, très lisible en petit corps sur écran bas de gamme</span>
+    </div>
+    <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:24px 26px; display:flex; flex-direction:column; gap:20px;">
+      <div style="display:flex; align-items:baseline; gap:20px; flex-wrap:wrap; border-bottom:1px solid #F1F5F9; padding-bottom:18px;">
+        <span style="font-size:36px; font-weight:800; letter-spacing:-0.03em;">Bulletin du 2ᵉ trimestre</span>
+        <span style="font-size:11.5px; color:#94A3B8; font-variant-numeric:tabular-nums;">Display · 36 / 800 · −3 %</span>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:20px; flex-wrap:wrap; border-bottom:1px solid #F1F5F9; padding-bottom:18px;">
+        <span style="font-size:23px; font-weight:800; letter-spacing:-0.02em;">Tableau de bord</span>
+        <span style="font-size:11.5px; color:#94A3B8; font-variant-numeric:tabular-nums;">Titre de page · 23 / 800</span>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:20px; flex-wrap:wrap; border-bottom:1px solid #F1F5F9; padding-bottom:18px;">
+        <span style="font-size:14.5px; font-weight:700;">Moyenne par niveau</span>
+        <span style="font-size:11.5px; color:#94A3B8; font-variant-numeric:tabular-nums;">Titre de carte · 14,5 / 700</span>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:20px; flex-wrap:wrap; border-bottom:1px solid #F1F5F9; padding-bottom:18px;">
+        <span style="font-size:13px;">Aïchata Bagayoko — 11ᵉ TSE, matricule AD-2312</span>
+        <span style="font-size:11.5px; color:#94A3B8; font-variant-numeric:tabular-nums;">Texte courant et tableaux · 13 / 400–600</span>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:20px; flex-wrap:wrap;">
+        <span style="font-size:11px; font-weight:700; letter-spacing:0.06em; color:#64748B;">EN-TÊTE DE COLONNE</span>
+        <span style="font-size:11.5px; color:#94A3B8; font-variant-numeric:tabular-nums;">Étiquette · 11 / 700 · +6 %</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOUTONS -->
+  <section style="display:flex; flex-direction:column; gap:16px;">
+    <div style="display:flex; align-items:baseline; gap:12px;">
+      <h2 style="margin:0; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Boutons</h2>
+      <span style="font-size:12.5px; color:#64748B;">Zone tactile minimale 44 px sur mobile · survolez pour voir les états</span>
+    </div>
+    <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:22px 24px; display:flex; flex-direction:column; gap:18px;">
+      <sc-for list="{{ boutons }}" as="b" hint-placeholder-count="4">
+        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding-bottom:16px; border-bottom:1px solid #F1F5F9;">
+          <span style="font-size:12px; font-weight:700; color:#64748B; width:112px; flex:none;">{{ b.nom }}</span>
+          <span style="border-radius:9px; padding:11px 16px; font-size:13px; font-weight:700; min-height:44px; display:flex; align-items:center; cursor:pointer; background: {{ b.bg }}; color: {{ b.fg }}; border:1px solid {{ b.bd }};" style-hover="filter:brightness(0.93)">{{ b.label }}</span>
+          <span style="border-radius:9px; padding:11px 16px; font-size:13px; font-weight:700; min-height:44px; display:flex; align-items:center; background: {{ b.hoverBg }}; color: {{ b.fg }}; border:1px solid {{ b.hoverBd }};">{{ b.label }}</span>
+          <span style="border-radius:9px; padding:11px 16px; font-size:13px; font-weight:700; min-height:44px; display:flex; align-items:center; opacity:0.45; background: {{ b.bg }}; color: {{ b.fg }}; border:1px solid {{ b.bd }};">{{ b.label }}</span>
+          <span style="border-radius:9px; padding:11px 16px; font-size:13px; font-weight:700; min-height:44px; display:flex; align-items:center; gap:9px; background: {{ b.bg }}; color: {{ b.fg }}; border:1px solid {{ b.bd }};">
+            <span style="width:13px; height:13px; border-radius:50%; border:2px solid currentColor; border-top-color:transparent; display:block; animation:dsPulse 1s linear infinite;"></span>Envoi…</span>
+          <span style="font-size:11px; color:#94A3B8; margin-left:auto;">normal · survol · désactivé · chargement</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CHAMPS ET SÉLECTEURS -->
+  <section style="display:flex; flex-direction:column; gap:16px;">
+    <h2 style="margin:0; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Champs, sélecteurs et badges</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
+
+      <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:20px 22px; display:flex; flex-direction:column; gap:16px;">
+        <div style="font-size:13.5px; font-weight:800;">Champs de saisie</div>
+        <sc-for list="{{ champs }}" as="c" hint-placeholder-count="5">
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <span style="font-size:11px; font-weight:700; letter-spacing:0.05em; color:#64748B;">{{ c.label }}</span>
+            <div style="border-radius:10px; padding:12px 14px; font-size:13.5px; display:flex; justify-content:space-between; align-items:center; border:1.5px solid {{ c.bd }}; background: {{ c.bg }}; color: {{ c.fg }};">
+              <span>{{ c.valeur }}</span>
+              <span style="font-size:11.5px; font-weight:700; color: {{ c.suffixFg }};">{{ c.suffix }}</span>
+            </div>
+            <sc-if value="{{ c.aide }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size:11.5px; line-height:1.45; color: {{ c.aideFg }};">{{ c.aide }}</span>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:20px 22px; display:flex; flex-direction:column; gap:14px;">
+          <div style="font-size:13.5px; font-weight:800;">Badges d'état</div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <sc-for list="{{ badges }}" as="b" hint-placeholder-count="7">
+              <span style="border-radius:20px; padding:4px 11px; font-size:11.5px; font-weight:700; background: {{ b.bg }}; color: {{ b.fg }};">{{ b.nom }}</span>
+            </sc-for>
+          </div>
+          <div style="font-size:11.5px; color:#64748B; line-height:1.5; border-top:1px solid #F1F5F9; padding-top:12px;">Chaque badge porte un mot, jamais une couleur seule — lisible en noir et blanc sur les bulletins imprimés.</div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:20px 22px; display:flex; flex-direction:column; gap:14px;">
+          <div style="font-size:13.5px; font-weight:800;">Sélecteurs et onglets</div>
+          <div style="display:flex; gap:7px; flex-wrap:wrap;">
+            <sc-for list="{{ onglets }}" as="o" hint-placeholder-count="3">
+              <span onClick="{{ o.select }}" style="border-radius:8px; padding:8px 14px; font-size:12.5px; font-weight:700; cursor:pointer; background: {{ o.bg }}; color: {{ o.fg }}; border:1px solid {{ o.bd }};">{{ o.nom }}</span>
+            </sc-for>
+          </div>
+          <div style="display:flex; gap:11px; align-items:center; border-top:1px solid #F1F5F9; padding-top:14px;">
+            <span onClick="{{ basculerNotif }}" style="width:46px; height:27px; border-radius:20px; padding:3px; display:flex; cursor:pointer; background: {{ switchBg }}; justify-content: {{ switchPos }};">
+              <span style="width:21px; height:21px; border-radius:50%; background:#fff; display:block;"></span>
+            </span>
+            <span style="display:flex; flex-direction:column; gap:1px;">
+              <span style="font-size:12.5px; font-weight:700;">Notifications d'absence par SMS</span>
+              <span style="font-size:11.5px; color:#64748B;">{{ switchEtat }}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVATARS, NOTIFICATIONS, ÉTATS -->
+  <section style="display:flex; flex-direction:column; gap:16px;">
+    <h2 style="margin:0; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Avatars, notifications et états de contenu</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:16px;">
+
+      <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:20px 22px; display:flex; flex-direction:column; gap:15px;">
+        <div style="font-size:13.5px; font-weight:800;">Avatars</div>
+        <div style="display:flex; gap:11px; align-items:center; flex-wrap:wrap;">
+          <span style="width:52px; height:52px; border-radius:50%; background:#102A43; color:#fff; display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:800;">AB</span>
+          <span style="width:42px; height:42px; border-radius:50%; background:#2563EB; color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800;">IS</span>
+          <span style="width:34px; height:34px; border-radius:50%; background:#F97316; color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800;">MK</span>
+          <span style="width:34px; height:34px; border-radius:50%; background:#EFF6FF; color:#2563EB; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800;">CT</span>
+          <span style="width:34px; height:34px; border-radius:50%; background:#F1F5F9; border:1.5px dashed #CBD5E1; display:block;"></span>
+        </div>
+        <div style="font-size:11.5px; color:#64748B; line-height:1.5;">Initiales par défaut : aucune photo d'élève n'est requise, ce qui allège aussi le chargement.</div>
+      </div>
+
+      <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:20px 22px; display:flex; flex-direction:column; gap:12px;">
+        <div style="font-size:13.5px; font-weight:800;">Notifications</div>
+        <sc-for list="{{ notifs }}" as="n" hint-placeholder-count="3">
+          <div style="border-radius:11px; padding:12px 13px; display:flex; gap:11px; align-items:flex-start; background: {{ n.bg }}; border:1px solid {{ n.bd }};">
+            <span style="width:8px; height:8px; border-radius:50%; margin-top:5px; flex:none; display:block; background: {{ n.point }};"></span>
+            <span style="display:flex; flex-direction:column; gap:2px;">
+              <span style="font-size:12.5px; font-weight:700; color: {{ n.fg }};">{{ n.titre }}</span>
+              <span style="font-size:11.5px; line-height:1.45; color: {{ n.fg }};">{{ n.texte }}</span>
+            </span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:20px 22px; display:flex; flex-direction:column; gap:15px;">
+        <div style="font-size:13.5px; font-weight:800;">Chargement et état vide</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <span style="height:12px; border-radius:6px; background:#EEF2F7; display:block; width:68%; animation:dsPulse 1.4s ease-in-out infinite;"></span>
+          <span style="height:12px; border-radius:6px; background:#EEF2F7; display:block; width:92%; animation:dsPulse 1.4s ease-in-out 0.15s infinite;"></span>
+          <span style="height:12px; border-radius:6px; background:#EEF2F7; display:block; width:52%; animation:dsPulse 1.4s ease-in-out 0.3s infinite;"></span>
+        </div>
+        <div style="border-top:1px solid #F1F5F9; padding-top:15px; display:flex; flex-direction:column; align-items:center; gap:9px; text-align:center;">
+          <span style="width:46px; height:46px; border-radius:14px; border:2.5px dashed #CBD5E1; display:block;"></span>
+          <span style="font-size:13px; font-weight:800;">Rien à afficher</span>
+          <span style="font-size:11.5px; color:#64748B; line-height:1.5;">Toujours accompagné d'une action : créer, importer, ou réinitialiser le filtre.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARBORESCENCE -->
+  <section style="display:flex; flex-direction:column; gap:16px;">
+    <div style="display:flex; align-items:baseline; gap:12px;">
+      <h2 style="margin:0; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Arborescence du produit</h2>
+      <span style="font-size:12.5px; color:#64748B;">Quatre espaces, un socle commun</span>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:16px;">
+      <sc-for list="{{ arbo }}" as="a" hint-placeholder-count="5">
+        <div style="background:#fff; border-radius:13px; overflow:hidden; border:1px solid {{ a.bd }};">
+          <div style="padding:14px 18px; display:flex; flex-direction:column; gap:2px; background: {{ a.enTeteBg }};">
+            <span style="font-size:10.5px; font-weight:800; letter-spacing:0.07em; color: {{ a.sousFg }};">{{ a.plateforme }}</span>
+            <span style="font-size:14.5px; font-weight:800; color: {{ a.titreFg }};">{{ a.nom }}</span>
+          </div>
+          <div style="padding:14px 18px; display:flex; flex-direction:column; gap:0;">
+            <sc-for list="{{ a.pages }}" as="p" hint-placeholder-count="8">
+              <span style="font-size:12.5px; color:#334155; padding:6px 0; border-bottom:1px solid #F4F7FB; line-height:1.4;">{{ p }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+</div>]]>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const COULEURS = [
+  { nom: 'Bleu nuit', hex: '#102A43', usage: 'Sidebar, en-têtes de document, fonds institutionnels' },
+  { nom: 'Bleu principal', hex: '#2563EB', usage: 'Actions primaires, liens, sélection' },
+  { nom: 'Orange chaud', hex: '#F97316', usage: 'Échéances, alertes prioritaires, action de diffusion' },
+  { nom: 'Vert réussite', hex: '#16A34A', usage: 'Validation, présence, moyenne au-dessus de la classe' },
+  { nom: 'Rouge alerte', hex: '#DC2626', usage: 'Absence non justifiée, conflit, note sous 10' },
+  { nom: 'Texte principal', hex: '#172033', usage: 'Titres et corps de texte' },
+  { nom: 'Gris secondaire', hex: '#64748B', usage: 'Libellés, métadonnées, texte d\u2019aide' },
+  { nom: 'Fond clair', hex: '#F8FAFC', usage: 'Fond d\u2019application et en-têtes de tableau' },
+  { nom: 'Blanc', hex: '#FFFFFF', usage: 'Cartes, tableaux, documents' }
+];
+
+const BOUTONS = [
+  { nom: 'Primaire', label: 'Valider les bulletins', bg: '#2563EB', fg: '#FFFFFF', bd: '#2563EB', hoverBg: '#1D4ED8', hoverBd: '#1D4ED8' },
+  { nom: 'Action urgente', label: 'Faire une annonce', bg: '#F97316', fg: '#FFFFFF', bd: '#F97316', hoverBg: '#EA6A0C', hoverBd: '#EA6A0C' },
+  { nom: 'Secondaire', label: 'Importer une liste', bg: '#FFFFFF', fg: '#172033', bd: '#CBD5E1', hoverBg: '#F1F5F9', hoverBd: '#94A3B8' },
+  { nom: 'Destructive', label: 'Annuler le cours', bg: '#FFFFFF', fg: '#991B1B', bd: '#FECACA', hoverBg: '#FEF2F2', hoverBd: '#DC2626' }
+];
+
+const CHAMPS = [
+  { label: 'NORMAL', valeur: 'Aïchata Bagayoko', suffix: '', bd: '#E2E8F0', bg: '#FFFFFF', fg: '#172033', aide: '', suffixFg: '#64748B' },
+  { label: 'ACTIF', valeur: 'AD-2312', suffix: 'Matricule', bd: '#2563EB', bg: '#FFFFFF', fg: '#172033', aide: '', suffixFg: '#2563EB' },
+  { label: 'ERREUR', valeur: '24', suffix: '/ 20', bd: '#DC2626', bg: '#FFFFFF', fg: '#991B1B', aide: 'Note supérieure au barème. Valeur maximale : 20.', aideFg: '#DC2626', suffixFg: '#DC2626' },
+  { label: 'SUCCÈS', valeur: '15,25', suffix: 'Enregistré', bd: '#16A34A', bg: '#FFFFFF', fg: '#172033', aide: 'Moyenne recalculée automatiquement.', aideFg: '#166534', suffixFg: '#16A34A' },
+  { label: 'VERROUILLÉ', valeur: '14,86', suffix: 'Validé', bd: '#E2E8F0', bg: '#F8FAFC', fg: '#94A3B8', aide: 'Modifiable uniquement par demande de correction.', aideFg: '#94A3B8', suffixFg: '#94A3B8' }
+];
+
+const BADGES = [
+  { nom: 'Présent', bg: '#DCFCE7', fg: '#166534' },
+  { nom: 'Absent', bg: '#FEE2E2', fg: '#991B1B' },
+  { nom: 'Retard', bg: '#FFEDD5', fg: '#9A3412' },
+  { nom: 'Excusé', bg: '#DBEAFE', fg: '#1E40AF' },
+  { nom: 'Brouillon', bg: '#F1F5F9', fg: '#475569' },
+  { nom: 'Soumis', bg: '#FEF3C7', fg: '#92400E' },
+  { nom: 'Validé', bg: '#DCFCE7', fg: '#166534' },
+  { nom: 'Cours annulé', bg: '#FEE2E2', fg: '#991B1B' },
+  { nom: 'Cours déplacé', bg: '#FFEDD5', fg: '#9A3412' }
+];
+
+const NOTIFS = [
+  { titre: 'Absence signalée', texte: 'Ismaël était absent lundi 13 janvier, matinée entière.', bg: '#FEF2F2', bd: '#FECACA', fg: '#991B1B', point: '#DC2626' },
+  { titre: 'Devoir proche de l\u2019échéance', texte: 'Mathématiques à rendre demain à 07h30.', bg: '#FFF7ED', bd: '#FED7AA', fg: '#9A3412', point: '#F97316' },
+  { titre: 'Bulletin disponible', texte: 'Le bulletin du 1ᵉʳ trimestre d\u2019Aïchata est publié.', bg: '#EFF6FF', bd: '#BFDBFE', fg: '#1E3A8A', point: '#2563EB' }
+];
+
+const ARBO = [
+  { nom: 'Socle commun', plateforme: 'WEB + MOBILE', bd: '#E2E8F0', enTeteBg: '#F8FAFC', titreFg: '#172033', sousFg: '#64748B',
+    pages: ['Splash', 'Onboarding — 3 étapes', 'Connexion', 'Choix du profil', 'Mot de passe oublié', 'Vérification OTP', 'Centre de notifications', 'Messagerie', 'Profil et paramètres', 'Aide et assistance', 'États : vide, chargement, erreur, hors connexion, accès refusé'] },
+  { nom: 'Administration', plateforme: 'WEB — 1440 PX', bd: '#BFDBFE', enTeteBg: '#EFF6FF', titreFg: '#1E3A8A', sousFg: '#2563EB',
+    pages: ['Tableau de bord', 'Classes et élèves', 'Fiche élève', 'Inscription et import groupé', 'Enseignants et personnel', 'Matières et coefficients', 'Affectations', 'Constructeur d\u2019emploi du temps', 'Absences et retards', 'Tableau des notes', 'Validation et publication', 'Bulletin A4 et clôture', 'Annonces', 'Rapports et statistiques', 'Comptes et permissions', 'Journal d\u2019activité'] },
+  { nom: 'Enseignant', plateforme: 'WEB — 1440 PX', bd: '#FED7AA', enTeteBg: '#FFF7ED', titreFg: '#9A3412', sousFg: '#C2410C',
+    pages: ['Ma journée', 'Planning semaine', 'Mes classes', 'Appel en direct', 'Saisie rapide des notes', 'Création d\u2019évaluation', 'Import des notes', 'Cahier de texte', 'Devoirs et suivi des remises', 'Progression d\u2019un élève', 'Messagerie', 'Demande de modification de cours'] },
+  { nom: 'Parent', plateforme: 'MOBILE — 390 × 844', bd: '#BFDBFE', enTeteBg: '#EFF6FF', titreFg: '#1E3A8A', sousFg: '#2563EB',
+    pages: ['Vue famille', 'Sélecteur d\u2019enfant', 'Accueil enfant', 'Détail des notes', 'Moyennes par matière', 'Bulletins PDF', 'Absences et retards', 'Justification avec pièce jointe', 'Signature électronique', 'Emploi du temps', 'Devoirs et cahier de texte', 'Annonces et messages', 'Préférences de notification'] },
+  { nom: 'Élève', plateforme: 'MOBILE — 360 × 800', bd: '#FED7AA', enTeteBg: '#FFF7ED', titreFg: '#9A3412', sousFg: '#C2410C',
+    pages: ['Ma journée', 'Prochain cours', 'Emploi du temps', 'Mes devoirs', 'Détail d\u2019un devoir', 'Mes notes et moyennes', 'Relevé de compétences', 'Bulletins', 'Cahier de texte', 'Ressources pédagogiques', 'Annonces', 'Messagerie encadrée', 'Profil scolaire'] }
+];
+
+const ONGLETS = ['Tous les niveaux', 'Collège', 'Lycée'];
+
+class Component extends DCLogic {
+  state = { onglet: 0, notif: true };
+
+  renderVals() {
+    const st = this.state;
+    return {
+      couleurs: COULEURS, boutons: BOUTONS, champs: CHAMPS, badges: BADGES, notifs: NOTIFS, arbo: ARBO,
+      onglets: ONGLETS.map((nom, i) => ({
+        nom, select: () => this.setState({ onglet: i }),
+        bg: st.onglet === i ? '#102A43' : '#FFFFFF',
+        fg: st.onglet === i ? '#FFFFFF' : '#475569',
+        bd: st.onglet === i ? '#102A43' : '#E2E8F0'
+      })),
+      basculerNotif: () => this.setState(s => ({ notif: !s.notif })),
+      switchBg: st.notif ? '#16A34A' : '#CBD5E1',
+      switchPos: st.notif ? 'flex-end' : 'flex-start',
+      switchEtat: st.notif ? 'Activées — SMS et notification push' : 'Désactivées — notification dans l\u2019application seulement'
+    };
+  }
+}
+</script>
+</body>
+</html>

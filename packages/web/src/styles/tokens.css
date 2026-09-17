@@ -1,0 +1,68 @@
+/* Transcrit depuis OROKIA Design System.dc.html — section COULEURS/TYPOGRAPHIE. */
+:root {
+  --color-navy: #102a43; /* Bleu nuit — sidebar, en-têtes de document, fonds institutionnels */
+  --color-blue: #2563eb; /* Bleu principal — actions primaires, liens, sélection */
+  --color-blue-hover: #1d4ed8;
+  --color-blue-soft-bg: #eff6ff;
+  --color-orange: #f97316; /* Orange chaud — échéances, alertes prioritaires, diffusion */
+  --color-orange-hover: #ea6a0c;
+  --color-orange-soft-bg: #fff7ed;
+
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-text: #172033;
+  --color-text-muted: #64748b;
+  --color-text-faint: #94a3b8;
+
+  --color-success: #16a34a;
+  --color-warning: #c2410c;
+  --color-danger: #dc2626;
+
+  --font-sans: "Manrope", system-ui, -apple-system, sans-serif;
+  --font-size-body: 13px;
+  --font-size-table-header: 11px;
+  --radius-md: 13px;
+  --radius-lg: 14px;
+  --touch-target: 44px;
+}
+
+* , *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--color-blue);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-orange);
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+  .no-print {
+    display: none !important;
+  }
+  body, #root {
+    background: #fff !important;
+  }
+  .print-document {
+    max-width: none !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}

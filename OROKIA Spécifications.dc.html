@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<![CDATA[<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin:0; font-family:'Manrope', system-ui, sans-serif; background:#F8FAFC; color:#172033; -webkit-font-smoothing:antialiased; }
+  a { color:#2563EB; text-decoration:none; }
+  a:hover { color:#F97316; }
+</style>
+</helmet>
+
+<div style="max-width:1000px; margin:0 auto; padding:36px 28px 60px; display:flex; flex-direction:column; gap:34px;">
+
+  <div style="display:flex; align-items:flex-end; gap:22px; flex-wrap:wrap; padding-bottom:20px; border-bottom:1px solid #E2E8F0;">
+    <img src="assets/orokia-logo.png" alt="OROKIA" style="height:42px; width:auto; display:block;">
+    <div style="display:flex; flex-direction:column; gap:4px;">
+      <div style="font-size:19px; font-weight:800; letter-spacing:-0.01em;">Spécifications pour les développeurs</div>
+      <div style="font-size:13px; color:#64748B;">Règles de calcul, rôles, notifications et contraintes techniques — école Awa Danté</div>
+    </div>
+  </div>
+
+  <section style="display:flex; flex-direction:column; gap:14px;">
+    <h2 style="margin:0; font-size:16px; font-weight:800;">Règles de notation</h2>
+    <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:20px 22px; display:flex; flex-direction:column; gap:14px;">
+      <sc-for list="{{ regles }}" as="r" hint-placeholder-count="6">
+        <div style="display:flex; gap:16px; padding-bottom:13px; border-bottom:1px solid #F1F5F9; flex-wrap:wrap;">
+          <span style="font-size:12.5px; font-weight:800; width:152px; flex:none;">{{ r.titre }}</span>
+          <span style="font-size:13px; color:#334155; line-height:1.6; flex:1; min-width:220px;">{{ r.texte }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display:flex; flex-direction:column; gap:14px;">
+    <h2 style="margin:0; font-size:16px; font-weight:800;">Rôles et droits</h2>
+    <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; overflow:hidden;">
+      <div style="overflow-x:auto;">
+      <table style="width:100%; min-width:680px; font-size:12.5px;">
+        <thead><tr style="background:#F8FAFC; text-align:left;">
+          <th style="padding:11px 16px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">ACTION</th>
+          <th style="padding:11px 12px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:center;">DIRECTION</th>
+          <th style="padding:11px 12px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:center;">CENSEUR</th>
+          <th style="padding:11px 12px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:center;">SECRÉTAIRE</th>
+          <th style="padding:11px 12px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:center;">ENSEIGNANT</th>
+          <th style="padding:11px 12px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:center;">PARENT</th>
+          <th style="padding:11px 12px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:center;">ÉLÈVE</th>
+        </tr></thead>
+        <tbody>
+          <sc-for list="{{ droits }}" as="d" hint-placeholder-count="9">
+            <tr style="border-bottom:1px solid #F1F5F9;">
+              <td style="padding:11px 16px; font-weight:600;">{{ d.action }}</td>
+              <td style="padding:11px 12px; text-align:center; font-weight:700; color: {{ d.c0 }};">{{ d.v0 }}</td>
+              <td style="padding:11px 12px; text-align:center; font-weight:700; color: {{ d.c1 }};">{{ d.v1 }}</td>
+              <td style="padding:11px 12px; text-align:center; font-weight:700; color: {{ d.c2 }};">{{ d.v2 }}</td>
+              <td style="padding:11px 12px; text-align:center; font-weight:700; color: {{ d.c3 }};">{{ d.v3 }}</td>
+              <td style="padding:11px 12px; text-align:center; font-weight:700; color: {{ d.c4 }};">{{ d.v4 }}</td>
+              <td style="padding:11px 12px; text-align:center; font-weight:700; color: {{ d.c5 }};">{{ d.v5 }}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+      </div>
+      <div style="padding:12px 16px; border-top:1px solid #E2E8F0; font-size:11.5px; color:#64748B;">Oui — autorisé · Limité — restreint aux classes affectées ou à ses propres enfants · Non — interdit et journalisé</div>
+    </div>
+  </section>
+
+  <section style="display:flex; flex-direction:column; gap:14px;">
+    <h2 style="margin:0; font-size:16px; font-weight:800;">Notifications</h2>
+    <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; overflow:hidden;">
+      <div style="overflow-x:auto;">
+      <table style="width:100%; min-width:640px; font-size:12.5px;">
+        <thead><tr style="background:#F8FAFC; text-align:left;">
+          <th style="padding:11px 16px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">ÉVÉNEMENT</th>
+          <th style="padding:11px 16px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">DESTINATAIRE</th>
+          <th style="padding:11px 16px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">CANAL</th>
+          <th style="padding:11px 16px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">DÉLAI</th>
+        </tr></thead>
+        <tbody>
+          <sc-for list="{{ notifs }}" as="n" hint-placeholder-count="7">
+            <tr style="border-bottom:1px solid #F1F5F9;">
+              <td style="padding:11px 16px; font-weight:600;">{{ n.ev }}</td>
+              <td style="padding:11px 16px; color:#475569;">{{ n.dest }}</td>
+              <td style="padding:11px 16px; font-weight:700; color: {{ n.canalFg }};">{{ n.canal }}</td>
+              <td style="padding:11px 16px; color:#64748B;">{{ n.delai }}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex; flex-direction:column; gap:14px;">
+    <h2 style="margin:0; font-size:16px; font-weight:800;">Contraintes techniques</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:14px;">
+      <sc-for list="{{ contraintes }}" as="c" hint-placeholder-count="6">
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 19px; display:flex; flex-direction:column; gap:7px;">
+          <div style="font-size:13.5px; font-weight:800;">{{ c.titre }}</div>
+          <div style="font-size:12.5px; color:#475569; line-height:1.6;">{{ c.texte }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+</div>]]>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const REGLES = [
+  { titre: 'Barème', texte: 'Primaire (1ʳᵉ à 6ᵉ année) noté sur 10. Collège et lycée (7ᵉ à 12ᵉ) notés sur 20. Le barème est une propriété du niveau, jamais saisie à la main.' },
+  { titre: 'Moyenne par matière', texte: '(devoir 1 + devoir 2 + composition × 2) ÷ 4. Une note manquante bloque le calcul : la moyenne reste vide et la cellule est signalée en orange, jamais remplacée par zéro.' },
+  { titre: 'Moyenne générale', texte: 'Somme des (moyenne × coefficient) ÷ somme des coefficients. Arrondi à deux décimales, séparateur décimal virgule.' },
+  { titre: 'Rang', texte: 'Calculé sur la moyenne générale de la classe. Les ex æquo partagent le même rang et le rang suivant est décalé d\u2019autant. Le rang n\u2019est publié aux familles qu\u2019après validation du conseil de classe.' },
+  { titre: 'Périodes', texte: 'Trois trimestres. La moyenne annuelle est la moyenne arithmétique des trois trimestres, calculée seulement une fois le T3 clôturé.' },
+  { titre: 'Verrouillage', texte: 'Après validation par la direction, les notes passent en lecture seule. Toute correction exige une demande motivée, tracée dans le journal avec l\u2019ancienne et la nouvelle valeur.' }
+];
+
+const DROITS = [
+  { action: 'Saisir des notes', v: ['Oui', 'Oui', 'Non', 'Limité', 'Non', 'Non'] },
+  { action: 'Valider les notes', v: ['Oui', 'Oui', 'Non', 'Non', 'Non', 'Non'] },
+  { action: 'Publier les bulletins', v: ['Oui', 'Non', 'Non', 'Non', 'Non', 'Non'] },
+  { action: 'Faire l\u2019appel', v: ['Oui', 'Oui', 'Non', 'Limité', 'Non', 'Non'] },
+  { action: 'Valider un justificatif', v: ['Oui', 'Oui', 'Non', 'Non', 'Non', 'Non'] },
+  { action: 'Inscrire un élève', v: ['Oui', 'Oui', 'Oui', 'Non', 'Non', 'Non'] },
+  { action: 'Modifier l\u2019emploi du temps', v: ['Oui', 'Oui', 'Non', 'Non', 'Non', 'Non'] },
+  { action: 'Diffuser une annonce', v: ['Oui', 'Oui', 'Limité', 'Non', 'Non', 'Non'] },
+  { action: 'Consulter les notes d\u2019un élève', v: ['Oui', 'Oui', 'Non', 'Limité', 'Limité', 'Limité'] },
+  { action: 'Gérer les comptes', v: ['Oui', 'Non', 'Non', 'Non', 'Non', 'Non'] }
+];
+
+const NOTIFS = [
+  { ev: 'Absence saisie', dest: 'Tuteurs de l\u2019élève', canal: 'Push + SMS', delai: 'Immédiat' },
+  { ev: 'Retard saisi', dest: 'Tuteurs de l\u2019élève', canal: 'Push', delai: 'Immédiat' },
+  { ev: 'Absence non justifiée depuis 48 h', dest: 'Tuteurs + censeur', canal: 'Push + SMS', delai: 'Relance à 48 h' },
+  { ev: 'Note publiée', dest: 'Tuteurs + élève', canal: 'Push', delai: 'Après validation' },
+  { ev: 'Bulletin publié', dest: 'Tuteurs', canal: 'Push + SMS', delai: 'Après clôture' },
+  { ev: 'Cours annulé ou déplacé', dest: 'Classe concernée + tuteurs', canal: 'Push + SMS', delai: 'Immédiat' },
+  { ev: 'Devoir donné', dest: 'Élève + tuteurs', canal: 'Push', delai: 'À l\u2019enregistrement' },
+  { ev: 'Écolage — échéance à 7 jours', dest: 'Tuteurs avec solde ouvert', canal: 'SMS', delai: 'J−7 puis J−1' }
+];
+
+const CONTRAINTES = [
+  { titre: 'Hors connexion prioritaire', texte: 'L\u2019appel et la saisie des notes fonctionnent sans réseau. Écriture dans un stockage local, file d\u2019attente de synchronisation, résolution de conflit au profit de la dernière écriture serveur avec alerte visible.' },
+  { titre: 'SMS de secours', texte: 'Toute notification critique dont l\u2019accusé de lecture push n\u2019arrive pas sous 15 minutes bascule en SMS. Un tuteur sans application installée reçoit uniquement des SMS.' },
+  { titre: 'Poids des pages', texte: 'Pas de photos d\u2019élèves, avatars en initiales, pas de police au-delà de Manrope. Cible : première vue utile en moins de 3 s sur 3G.' },
+  { titre: 'Téléphone comme identifiant', texte: 'Le numéro au format +223 est l\u2019identifiant unique. Un même numéro peut porter plusieurs profils (parent de plusieurs enfants, parent également enseignant) : l\u2019écran de choix du profil est obligatoire dans ce cas.' },
+  { titre: 'Double authentification', texte: 'Obligatoire pour la direction, le censeur et le secrétariat. Code à 6 chiffres par SMS, appel vocal en secours, expiration à 5 minutes, 5 tentatives avant blocage temporaire.' },
+  { titre: 'Bulletin imprimé', texte: 'Sortie A4 portrait, lisible en noir et blanc : aucune information portée par la couleur seule. Chaque bulletin porte un identifiant unique vérifiable en ligne.' },
+  { titre: 'Journalisation', texte: 'Toute modification de note après soumission, toute suspension de compte et tout accès refusé sont écrits au journal avec auteur, horodatage et valeurs avant/après.' },
+  { titre: 'Langues', texte: 'Interface en français, bamanankan et anglais. Les chaînes restent externalisées ; les nombres utilisent la virgule décimale et l\u2019espace comme séparateur de milliers.' }
+];
+
+class Component extends DCLogic {
+  renderVals() {
+    const teinte = v => v === 'Oui' ? '#16A34A' : v === 'Limité' ? '#C2410C' : '#94A3B8';
+    return {
+      regles: REGLES,
+      contraintes: CONTRAINTES,
+      notifs: NOTIFS.map(n => ({ ...n, canalFg: n.canal.indexOf('SMS') >= 0 ? '#C2410C' : '#2563EB' })),
+      droits: DROITS.map(d => {
+        const o = { action: d.action };
+        d.v.forEach((v, i) => { o['v' + i] = v; o['c' + i] = teinte(v); });
+        return o;
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

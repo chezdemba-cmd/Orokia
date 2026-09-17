@@ -1,0 +1,23 @@
+{
+  "name": "orokia",
+  "private": true,
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @orokia/backend --filter @orokia/web dev",
+    "build": "pnpm -r --filter @orokia/shared --filter @orokia/backend --filter @orokia/web build",
+    "test": "pnpm -r --filter @orokia/backend --filter @orokia/shared test",
+    "test:integration": "pnpm --filter @orokia/backend test:integration",
+    "lint": "pnpm -r lint",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "db:migrate": "pnpm --filter @orokia/backend prisma:migrate",
+    "db:seed": "pnpm --filter @orokia/backend prisma:seed",
+    "db:reset": "pnpm --filter @orokia/backend prisma:reset"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}

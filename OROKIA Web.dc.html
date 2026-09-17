@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<![CDATA[<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin:0; font-family:'Manrope', system-ui, sans-serif; background:#F8FAFC; color:#172033; -webkit-font-smoothing:antialiased; }
+  a { color:#2563EB; text-decoration:none; }
+  a:hover { color:#F97316; }
+  table { border-collapse:collapse; }
+</style>
+</helmet>
+
+<div style="display:flex; min-height:100vh; background:#F8FAFC;">
+
+  <aside style="width:250px; flex:none; background:#102A43; color:#fff; display:flex; flex-direction:column; padding:20px 0 20px;">
+    <div style="padding:0 16px 22px;">
+      <div style="background:#fff; border-radius:12px; padding:12px 14px;">
+        <img src="assets/orokia-logo.png" alt="OROKIA" style="display:block; width:100%; height:auto;">
+      </div>
+      <div style="font-size:10.5px; color:#8FA8C4; letter-spacing:0.03em; padding:9px 2px 0;">L'école connectée, la réussite partagée</div>
+    </div>
+
+    <div style="padding:0 20px 9px; font-size:10px; font-weight:700; letter-spacing:0.1em; color:#5F7A99;">ADMINISTRATION</div>
+    <nav style="display:flex; flex-direction:column; gap:2px; padding:0 12px;">
+      <div onClick="{{ go0 }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg0 }}; color: {{ fg0 }};">
+        <span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Tableau de bord</div>
+      <div onClick="{{ go1 }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg1 }}; color: {{ fg1 }};">
+        <span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Classes et élèves</div>
+      <div onClick="{{ go2 }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg2 }}; color: {{ fg2 }};">
+        <span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Notes et bulletins</div>
+      <div onClick="{{ go3 }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg3 }}; color: {{ fg3 }};">
+        <span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Emploi du temps</div>
+      <div onClick="{{ go8 }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg8 }}; color: {{ fg8 }};">
+        <span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Annonces</div>
+      <div onClick="{{ go5 }}" style="display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg5 }}; color: {{ fg5 }};">
+        <span style="display:flex; align-items:center; gap:10px;"><span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Messagerie</span>
+        <span style="background:#F97316; color:#fff; font-size:10.5px; font-weight:800; border-radius:20px; padding:1px 7px;">5</span></div>
+      <div onClick="{{ go11 }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg11 }}; color: {{ fg11 }};">
+        <span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Rapports et statistiques</div>
+      <div onClick="{{ go9 }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg9 }}; color: {{ fg9 }};">
+        <span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Comptes et permissions</div>
+    </nav>
+
+    <div style="padding:22px 20px 9px; font-size:10px; font-weight:700; letter-spacing:0.1em; color:#5F7A99;">ESPACE ENSEIGNANT</div>
+    <nav style="display:flex; flex-direction:column; gap:2px; padding:0 12px;">
+      <div onClick="{{ go4 }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg4 }}; color: {{ fg4 }};">
+        <span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Ma journée</div>
+      <div onClick="{{ go10 }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:9px; font-size:13.5px; font-weight:600; cursor:pointer; background: {{ bg10 }}; color: {{ fg10 }};">
+        <span style="width:15px; height:15px; border-radius:4px; border:2px solid currentColor; flex:none; display:block;"></span>Cahier de texte</div>
+    </nav>
+
+    <div style="margin-top:auto; padding:18px 16px 0;">
+      <div style="background:#16324F; border-radius:11px; padding:13px 14px; display:flex; flex-direction:column; gap:7px;">
+        <div style="display:flex; align-items:center; gap:7px; font-size:11.5px; font-weight:700; color:#22C55E;">
+          <span style="width:7px; height:7px; border-radius:50%; background:#22C55E; display:block;"></span>Synchronisé</div>
+        <div style="font-size:11px; color:#8FA8C4; line-height:1.45;">Dernière mise à jour il y a 2 min. Mode hors connexion prêt pour l'appel.</div>
+      </div>
+    </div>
+  </aside>
+
+  <div style="flex:1; min-width:0; display:flex; flex-direction:column;">
+
+    <header style="background:#fff; border-bottom:1px solid #E2E8F0; padding:0 26px; min-height:64px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; flex:none;">
+      <div style="flex:1; min-width:180px; max-width:360px; background:#F1F5F9; border:1px solid #E2E8F0; border-radius:9px; padding:9px 13px; font-size:13px; color:#94A3B8;">Rechercher un élève, une classe…</div>
+      <div style="display:flex; align-items:center; gap:10px; margin-left:auto; flex-wrap:wrap;">
+        <div style="border:1px solid #E2E8F0; border-radius:9px; padding:8px 13px; font-size:12.5px; font-weight:600;">2025 – 2026</div>
+        <div style="border:1px solid #E2E8F0; border-radius:9px; padding:8px 13px; font-size:12.5px; font-weight:600;">2<sup style="font-size:9px;">e</sup> trimestre</div>
+        <div style="position:relative; width:36px; height:36px; border-radius:9px; border:1px solid #E2E8F0; display:flex; align-items:center; justify-content:center;">
+          <span style="width:13px; height:13px; border:2px solid #64748B; border-radius:3px; display:block;"></span>
+          <span style="position:absolute; top:6px; right:6px; width:7px; height:7px; border-radius:50%; background:#DC2626; border:1.5px solid #fff; display:block;"></span>
+        </div>
+        <div style="display:flex; align-items:center; gap:9px;">
+          <div style="width:34px; height:34px; border-radius:50%; background:#2563EB; color:#fff; display:flex; align-items:center; justify-content:center; font-size:12.5px; font-weight:700;">IS</div>
+          <div style="display:flex; flex-direction:column;">
+            <div style="font-size:12.5px; font-weight:700;">Ibrahim Samaké</div>
+            <div style="font-size:11px; color:#64748B;">Censeur</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main style="flex:1; min-width:0; padding:26px;">
+
+      <!-- 1 · TABLEAU DE BORD ADMIN -->
+      <sc-if value="{{ s0 }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Tableau de bord</h1>
+            <div style="font-size:13px; color:#64748B;">École Awa Danté — Médina Coura, Bamako · jeudi 15 janvier</div>
+          </div>
+          <div style="display:flex; gap:9px; flex-wrap:wrap;">
+            <div style="background:#F97316; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">Faire une annonce</div>
+            <div style="background:#fff; border:1px solid #CBD5E1; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:600; cursor:pointer;">Ajouter un élève</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(186px, 1fr)); gap:14px;">
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:12px; font-weight:600; color:#64748B;">Élèves inscrits</div>
+            <div style="font-size:30px; font-weight:800; letter-spacing:-0.03em; line-height:1;">352</div>
+            <div style="font-size:11.5px; color:#64748B;">15 classes · 1<sup>re</sup> année à 12<sup>e</sup></div>
+          </div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:12px; font-weight:600; color:#64748B;">Enseignants</div>
+            <div style="font-size:30px; font-weight:800; letter-spacing:-0.03em; line-height:1;">22</div>
+            <div style="font-size:11.5px; color:#64748B;">6 au primaire · 22 au secondaire</div>
+          </div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:12px; font-weight:600; color:#64748B;">Taux de présence</div>
+            <div style="font-size:30px; font-weight:800; letter-spacing:-0.03em; line-height:1; color:#16A34A;">93,4 %</div>
+            <div style="font-size:11.5px; color:#16A34A; font-weight:600;">+1,8 pt sur le trimestre</div>
+          </div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:12px; font-weight:600; color:#64748B;">Moyenne générale</div>
+            <div style="font-size:30px; font-weight:800; letter-spacing:-0.03em; line-height:1;">12,4<span style="font-size:15px; color:#64748B; font-weight:700;">/20</span></div>
+            <div style="font-size:11.5px; color:#64748B;">Secondaire · primaire noté 7,2/10</div>
+          </div>
+          <div style="background:#FFF7ED; border:1px solid #FED7AA; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-size:12px; font-weight:700; color:#9A3412;">À traiter aujourd'hui</div>
+            <div style="font-size:30px; font-weight:800; letter-spacing:-0.03em; line-height:1; color:#C2410C;">14</div>
+            <div style="font-size:11.5px; color:#9A3412;">absences non justifiées</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:16px;">
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:15px;">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
+              <div style="font-size:14.5px; font-weight:700;">Taux de présence par semaine</div>
+              <div style="font-size:11.5px; color:#64748B;">Trimestre 2</div>
+            </div>
+            <div style="display:flex; align-items:flex-end; gap:10px; height:148px;">
+              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; gap:7px; height:100%;"><div style="height:78%; background:#DBEAFE; border-radius:6px 6px 0 0;"></div><div style="font-size:10.5px; color:#64748B; text-align:center;">S1</div></div>
+              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; gap:7px; height:100%;"><div style="height:85%; background:#DBEAFE; border-radius:6px 6px 0 0;"></div><div style="font-size:10.5px; color:#64748B; text-align:center;">S2</div></div>
+              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; gap:7px; height:100%;"><div style="height:71%; background:#DBEAFE; border-radius:6px 6px 0 0;"></div><div style="font-size:10.5px; color:#64748B; text-align:center;">S3</div></div>
+              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; gap:7px; height:100%;"><div style="height:88%; background:#DBEAFE; border-radius:6px 6px 0 0;"></div><div style="font-size:10.5px; color:#64748B; text-align:center;">S4</div></div>
+              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; gap:7px; height:100%;"><div style="height:92%; background:#93C5FD; border-radius:6px 6px 0 0;"></div><div style="font-size:10.5px; color:#64748B; text-align:center;">S5</div></div>
+              <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; gap:7px; height:100%;"><div style="height:96%; background:#2563EB; border-radius:6px 6px 0 0;"></div><div style="font-size:10.5px; color:#172033; font-weight:700; text-align:center;">S6</div></div>
+            </div>
+            <div style="font-size:11.5px; color:#64748B; border-top:1px solid #F1F5F9; padding-top:12px; line-height:1.5;">Semaine en cours : 93,4 %. La 9<sup>e</sup> B reste la classe la plus touchée (86,1 %).</div>
+          </div>
+
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:14.5px; font-weight:700;">Moyenne par niveau</div>
+            <div style="display:flex; flex-direction:column; gap:11px;">
+              <div style="display:flex; flex-direction:column; gap:5px;"><div style="display:flex; justify-content:space-between; font-size:12.5px;"><span style="font-weight:600;">Primaire — 1<sup>re</sup> à 3<sup>e</sup> année</span><span style="color:#64748B;">7,4<span style="font-size:10.5px;">/10</span></span></div><div style="height:7px; background:#F1F5F9; border-radius:5px;"><div style="width:74%; height:100%; background:#16A34A; border-radius:5px;"></div></div></div>
+              <div style="display:flex; flex-direction:column; gap:5px;"><div style="display:flex; justify-content:space-between; font-size:12.5px;"><span style="font-weight:600;">Primaire — 4<sup>e</sup> à 6<sup>e</sup> année</span><span style="color:#64748B;">7,0<span style="font-size:10.5px;">/10</span></span></div><div style="height:7px; background:#F1F5F9; border-radius:5px;"><div style="width:70%; height:100%; background:#2563EB; border-radius:5px;"></div></div></div>
+              <div style="display:flex; flex-direction:column; gap:5px;"><div style="display:flex; justify-content:space-between; font-size:12.5px;"><span style="font-weight:600;">7<sup>e</sup></span><span style="color:#64748B;">11,8</span></div><div style="height:7px; background:#F1F5F9; border-radius:5px;"><div style="width:59%; height:100%; background:#2563EB; border-radius:5px;"></div></div></div>
+              <div style="display:flex; flex-direction:column; gap:5px;"><div style="display:flex; justify-content:space-between; font-size:12.5px;"><span style="font-weight:600;">8<sup>e</sup></span><span style="color:#64748B;">12,1</span></div><div style="height:7px; background:#F1F5F9; border-radius:5px;"><div style="width:61%; height:100%; background:#2563EB; border-radius:5px;"></div></div></div>
+              <div style="display:flex; flex-direction:column; gap:5px;"><div style="display:flex; justify-content:space-between; font-size:12.5px;"><span style="font-weight:600;">9<sup>e</sup> — année du DEF</span><span style="color:#64748B;">11,2</span></div><div style="height:7px; background:#F1F5F9; border-radius:5px;"><div style="width:56%; height:100%; background:#F97316; border-radius:5px;"></div></div></div>
+              <div style="display:flex; flex-direction:column; gap:5px;"><div style="display:flex; justify-content:space-between; font-size:12.5px;"><span style="font-weight:600;">10<sup>e</sup> tronc commun</span><span style="color:#64748B;">12,9</span></div><div style="height:7px; background:#F1F5F9; border-radius:5px;"><div style="width:64%; height:100%; background:#2563EB; border-radius:5px;"></div></div></div>
+              <div style="display:flex; flex-direction:column; gap:5px;"><div style="display:flex; justify-content:space-between; font-size:12.5px;"><span style="font-weight:600;">11<sup>e</sup> TSE / TSS</span><span style="color:#64748B;">13,4</span></div><div style="height:7px; background:#F1F5F9; border-radius:5px;"><div style="width:67%; height:100%; background:#16A34A; border-radius:5px;"></div></div></div>
+              <div style="display:flex; flex-direction:column; gap:5px;"><div style="display:flex; justify-content:space-between; font-size:12.5px;"><span style="font-weight:600;">12<sup>e</sup> TLL</span><span style="color:#64748B;">12,6</span></div><div style="height:7px; background:#F1F5F9; border-radius:5px;"><div style="width:63%; height:100%; background:#2563EB; border-radius:5px;"></div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:16px;">
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:12px;">
+            <div style="font-size:14.5px; font-weight:700;">Événements récents</div>
+            <div style="display:flex; flex-direction:column;">
+              <div style="display:flex; gap:12px; padding:11px 0; border-bottom:1px solid #F1F5F9;"><span style="width:7px; height:7px; border-radius:50%; background:#DC2626; margin-top:6px; flex:none; display:block;"></span><div style="display:flex; flex-direction:column; gap:2px;"><div style="font-size:13px; font-weight:600;">Cours de Physique-Chimie annulé — 11<sup>e</sup> TSE</div><div style="font-size:11.5px; color:#64748B;">M. Cheick Traoré · il y a 25 min · parents notifiés</div></div></div>
+              <div style="display:flex; gap:12px; padding:11px 0; border-bottom:1px solid #F1F5F9;"><span style="width:7px; height:7px; border-radius:50%; background:#F97316; margin-top:6px; flex:none; display:block;"></span><div style="display:flex; flex-direction:column; gap:2px;"><div style="font-size:13px; font-weight:600;">7 absences saisies en 9<sup>e</sup> B</div><div style="font-size:11.5px; color:#64748B;">Appel du matin · SMS envoyés aux familles</div></div></div>
+              <div style="display:flex; gap:12px; padding:11px 0; border-bottom:1px solid #F1F5F9;"><span style="width:7px; height:7px; border-radius:50%; background:#2563EB; margin-top:6px; flex:none; display:block;"></span><div style="display:flex; flex-direction:column; gap:2px;"><div style="font-size:13px; font-weight:600;">Notes de Mathématiques soumises — 11<sup>e</sup> TSE</div><div style="font-size:11.5px; color:#64748B;">M. Sékou Diallo · en attente de validation</div></div></div>
+              <div style="display:flex; gap:12px; padding:11px 0;"><span style="width:7px; height:7px; border-radius:50%; background:#16A34A; margin-top:6px; flex:none; display:block;"></span><div style="display:flex; flex-direction:column; gap:2px;"><div style="font-size:13px; font-weight:600;">4 justificatifs d'absence reçus des parents</div><div style="font-size:11.5px; color:#64748B;">Certificats médicaux joints · à examiner</div></div></div>
+            </div>
+          </div>
+
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:13px;">
+            <div style="font-size:14.5px; font-weight:700;">Actions fréquentes</div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(135px, 1fr)); gap:10px;">
+              <div onClick="{{ go1 }}" style="border:1px solid #E2E8F0; border-radius:10px; padding:14px; font-size:12.5px; font-weight:600; cursor:pointer; display:flex; flex-direction:column; gap:8px;"><span style="width:18px; height:18px; border-radius:5px; border:2px solid #2563EB; display:block;"></span>Créer une classe</div>
+              <div onClick="{{ go3 }}" style="border:1px solid #E2E8F0; border-radius:10px; padding:14px; font-size:12.5px; font-weight:600; cursor:pointer; display:flex; flex-direction:column; gap:8px;"><span style="width:18px; height:18px; border-radius:5px; border:2px solid #2563EB; display:block;"></span>Construire un emploi du temps</div>
+              <div onClick="{{ go2 }}" style="border:1px solid #E2E8F0; border-radius:10px; padding:14px; font-size:12.5px; font-weight:600; cursor:pointer; display:flex; flex-direction:column; gap:8px;"><span style="width:18px; height:18px; border-radius:5px; border:2px solid #F97316; display:block;"></span>Valider les bulletins</div>
+              <div onClick="{{ go5 }}" style="border:1px solid #E2E8F0; border-radius:10px; padding:14px; font-size:12.5px; font-weight:600; cursor:pointer; display:flex; flex-direction:column; gap:8px;"><span style="width:18px; height:18px; border-radius:5px; border:2px solid #2563EB; display:block;"></span>Diffuser à une classe</div>
+            </div>
+            <div style="background:#F8FAFC; border-radius:10px; padding:13px 14px; font-size:12px; color:#475569; line-height:1.5;">Écolage : 38 familles ont un solde ouvert, 2 450 000 FCFA restant à recouvrer sur le trimestre.</div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- 2 · CLASSES ET ÉLÈVES -->
+      <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Classes et élèves</h1>
+            <div style="font-size:13px; color:#64748B;">15 classes · 352 élèves inscrits · primaire noté /10, secondaire /20</div>
+          </div>
+          <div style="display:flex; gap:9px; flex-wrap:wrap;">
+            <div style="background:#fff; border:1px solid #CBD5E1; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:600; cursor:pointer;">Importer une liste</div>
+            <div style="background:#2563EB; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">Créer une classe</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <div onClick="{{ setNiveauTous }}" style="border-radius:8px; padding:7px 13px; font-size:12.5px; font-weight:600; cursor:pointer; background: {{ nvTousBg }}; color: {{ nvTousFg }}; border:1px solid #E2E8F0;">Tous les niveaux</div>
+          <div onClick="{{ setNiveauPrimaire }}" style="border-radius:8px; padding:7px 13px; font-size:12.5px; font-weight:600; cursor:pointer; background: {{ nvPriBg }}; color: {{ nvPriFg }}; border:1px solid #E2E8F0;">Primaire</div>
+          <div onClick="{{ setNiveauCollege }}" style="border-radius:8px; padding:7px 13px; font-size:12.5px; font-weight:600; cursor:pointer; background: {{ nvColBg }}; color: {{ nvColFg }}; border:1px solid #E2E8F0;">Collège</div>
+          <div onClick="{{ setNiveauLycee }}" style="border-radius:8px; padding:7px 13px; font-size:12.5px; font-weight:600; cursor:pointer; background: {{ nvLycBg }}; color: {{ nvLycFg }}; border:1px solid #E2E8F0;">Lycée</div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; overflow:hidden;">
+          <div style="overflow-x:auto;">
+          <table style="width:100%; min-width:800px; font-size:13px;">
+            <thead>
+              <tr style="background:#F8FAFC; text-align:left;">
+                <th style="padding:12px 18px; font-size:11px; letter-spacing:0.06em; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">CLASSE</th>
+                <th style="padding:12px 18px; font-size:11px; letter-spacing:0.06em; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">PROFESSEUR PRINCIPAL</th>
+                <th style="padding:12px 18px; font-size:11px; letter-spacing:0.06em; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">EFFECTIF</th>
+                <th style="padding:12px 18px; font-size:11px; letter-spacing:0.06em; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">MOYENNE</th>
+                <th style="padding:12px 18px; font-size:11px; letter-spacing:0.06em; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">PRÉSENCE</th>
+                <th style="padding:12px 18px; font-size:11px; letter-spacing:0.06em; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">NOTES T2</th>
+                <th style="padding:12px 18px; border-bottom:1px solid #E2E8F0;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <sc-for list="{{ classes }}" as="c" hint-placeholder-count="9">
+                <tr style="border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:14px 18px; font-weight:700;">{{ c.nom }}</td>
+                  <td style="padding:14px 18px; color:#475569;">{{ c.prof }}</td>
+                  <td style="padding:14px 18px;">{{ c.effectif }}</td>
+                  <td style="padding:14px 18px; font-weight:600;">{{ c.moyenne }}</td>
+                  <td style="padding:14px 18px; color: {{ c.presColor }}; font-weight:600;">{{ c.presence }}</td>
+                  <td style="padding:14px 18px;"><span style="border-radius:20px; padding:3px 10px; font-size:11.5px; font-weight:700; background: {{ c.badgeBg }}; color: {{ c.badgeFg }};">{{ c.statut }}</span></td>
+                  <td style="padding:14px 18px; text-align:right;"><span onClick="{{ c.ouvrir }}" style="color:#2563EB; font-weight:600; cursor:pointer;">Ouvrir</span></td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 18px; border-top:1px solid #E2E8F0; font-size:12px; color:#64748B; flex-wrap:wrap; gap:10px;">
+            <span>{{ nbClasses }} classes affichées · 352 élèves</span>
+            <span style="display:flex; gap:6px;"><span style="border:1px solid #E2E8F0; border-radius:7px; padding:5px 10px; background:#fff;">Précédent</span><span style="border:1px solid #E2E8F0; border-radius:7px; padding:5px 10px; background:#fff;">Suivant</span></span>
+          </div>
+        </div>
+
+        <sc-if value="{{ classeOuverte }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:20px; display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+            <div style="display:flex; flex-direction:column; gap:3px;">
+              <div style="font-size:17px; font-weight:800;">{{ classeNom }} — liste des élèves</div>
+              <div style="font-size:12.5px; color:#64748B;">Professeur principal : {{ classeProf }} · salle B2 · moyenne {{ classeMoy }}/20</div>
+            </div>
+            <div onClick="{{ fermerClasse }}" style="border:1px solid #CBD5E1; border-radius:9px; padding:8px 14px; font-size:12.5px; font-weight:600; cursor:pointer;">Fermer</div>
+          </div>
+          <div style="overflow-x:auto;">
+          <table style="width:100%; min-width:700px; font-size:13px;">
+            <thead><tr style="background:#F8FAFC; text-align:left;">
+              <th style="padding:11px 16px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">MATRICULE</th>
+              <th style="padding:11px 16px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">ÉLÈVE</th>
+              <th style="padding:11px 16px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">MOYENNE</th>
+              <th style="padding:11px 16px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">RANG</th>
+              <th style="padding:11px 16px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">ABSENCES</th>
+              <th style="padding:11px 16px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">TUTEUR</th>
+            </tr></thead>
+            <tbody>
+              <sc-for list="{{ eleves }}" as="e" hint-placeholder-count="6">
+                <tr onClick="{{ e.ouvrir }}" style="border-bottom:1px solid #F1F5F9; cursor:pointer;">
+                  <td style="padding:13px 16px; color:#64748B; font-variant-numeric:tabular-nums;">{{ e.mat }}</td>
+                  <td style="padding:13px 16px; font-weight:600;">{{ e.nom }}</td>
+                  <td style="padding:13px 16px;">{{ e.moy }}</td>
+                  <td style="padding:13px 16px; color:#64748B;">{{ e.rang }}</td>
+                  <td style="padding:13px 16px;">{{ e.abs }}</td>
+                  <td style="padding:13px 16px; color:#475569;">{{ e.tuteur }}</td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        </sc-if>
+      </div>
+      </sc-if>
+
+      <!-- 3 · NOTES ET BULLETINS -->
+      <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Notes et bulletins</h1>
+            <div style="font-size:13px; color:#64748B;">11<sup>e</sup> TSE · Mathématiques · 2<sup>e</sup> trimestre · M. Sékou Diallo</div>
+          </div>
+          <div style="display:flex; gap:9px; flex-wrap:wrap; align-items:center;">
+            <span style="font-size:12px; color:#64748B;">{{ saveLabel }}</span>
+            <div onClick="{{ valider }}" style="background: {{ validBg }}; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">{{ validLabel }}</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:9px; padding:8px 13px; font-size:12.5px; font-weight:600;">Classe : 11<sup>e</sup> TSE</div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:9px; padding:8px 13px; font-size:12.5px; font-weight:600;">Matière : Mathématiques — coeff. 4</div>
+          <div style="background:#fff; border:1px solid #CBD5E1; border-radius:9px; padding:8px 13px; font-size:12.5px; font-weight:600; cursor:pointer;">Importer un CSV</div>
+          <div style="font-size:12px; color:#64748B;">Barème /20 · navigation au clavier · collage depuis Excel accepté</div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; overflow:hidden;">
+          <div style="overflow-x:auto;">
+          <table style="width:100%; min-width:840px; font-size:13px;">
+            <thead>
+              <tr style="background:#F8FAFC; text-align:left;">
+                <th style="padding:11px 16px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; position:sticky; left:0; background:#F8FAFC;">ÉLÈVE</th>
+                <th style="padding:11px 12px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:center;">DEVOIR 1<br><span style="font-weight:500; color:#94A3B8;">coeff. 1</span></th>
+                <th style="padding:11px 12px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:center;">DEVOIR 2<br><span style="font-weight:500; color:#94A3B8;">coeff. 1</span></th>
+                <th style="padding:11px 12px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:center;">COMPO<br><span style="font-weight:500; color:#94A3B8;">coeff. 2</span></th>
+                <th style="padding:11px 12px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:center;">MOYENNE</th>
+                <th style="padding:11px 12px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; text-align:center;">RANG</th>
+                <th style="padding:11px 16px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">APPRÉCIATION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <sc-for list="{{ notes }}" as="n" hint-placeholder-count="8">
+                <tr style="border-bottom:1px solid #F1F5F9; background: {{ n.rowBg }};">
+                  <td style="padding:10px 16px; font-weight:600; position:sticky; left:0; background: {{ n.stickyBg }};">{{ n.nom }}</td>
+                  <td style="padding:10px 12px; text-align:center;"><input value="{{ n.d1 }}" onChange="{{ n.setD1 }}" style="width:58px; text-align:center; font-family:inherit; font-size:13px; font-weight:600; padding:7px 4px; border:1px solid #E2E8F0; border-radius:7px; background:#fff; color:#172033;"></td>
+                  <td style="padding:10px 12px; text-align:center;"><input value="{{ n.d2 }}" onChange="{{ n.setD2 }}" style="width:58px; text-align:center; font-family:inherit; font-size:13px; font-weight:600; padding:7px 4px; border:1px solid #E2E8F0; border-radius:7px; background:#fff; color:#172033;"></td>
+                  <td style="padding:10px 12px; text-align:center;"><input value="{{ n.co }}" onChange="{{ n.setCo }}" placeholder="—" style="width:58px; text-align:center; font-family:inherit; font-size:13px; font-weight:600; padding:7px 4px; border-radius:7px; background:#fff; color:#172033; border:1px solid {{ n.coBorder }};"></td>
+                  <td style="padding:10px 12px; text-align:center; font-weight:800; color: {{ n.moyColor }};">{{ n.moy }}</td>
+                  <td style="padding:10px 12px; text-align:center; color:#64748B;">{{ n.rang }}</td>
+                  <td style="padding:10px 16px; color:#475569; font-size:12.5px;">{{ n.app }}</td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:13px 16px; border-top:1px solid #E2E8F0; font-size:12px; flex-wrap:wrap; gap:10px;">
+            <span style="color:#9A3412; font-weight:600;">{{ manquantes }}</span>
+            <span style="color:#64748B;">Moyenne de la classe : {{ moyClasse }}/20</span>
+          </div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:13px;">
+          <div style="font-size:14.5px; font-weight:700;">Bulletins du 2<sup>e</sup> trimestre</div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:12px;">
+            <div style="border:1px solid #E2E8F0; border-radius:11px; padding:14px 16px; display:flex; flex-direction:column; gap:5px;"><div style="font-size:12px; color:#64748B; font-weight:600;">Notes complètes</div><div style="font-size:22px; font-weight:800;">6 / 9 classes</div></div>
+            <div style="border:1px solid #FED7AA; background:#FFF7ED; border-radius:11px; padding:14px 16px; display:flex; flex-direction:column; gap:5px;"><div style="font-size:12px; color:#9A3412; font-weight:600;">En attente de validation</div><div style="font-size:22px; font-weight:800; color:#C2410C;">3 classes</div></div>
+            <div style="border:1px solid #E2E8F0; border-radius:11px; padding:14px 16px; display:flex; flex-direction:column; gap:5px;"><div style="font-size:12px; color:#64748B; font-weight:600;">Publiés aux familles</div><div style="font-size:22px; font-weight:800; color:#16A34A;">0</div></div>
+          </div>
+          <div style="display:flex; gap:9px; flex-wrap:wrap; padding-top:3px;">
+            <div onClick="{{ go7 }}" style="background:#102A43; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">Prévisualiser un bulletin</div>
+            <div style="background:#fff; border:1px solid #CBD5E1; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:600; cursor:pointer;">Publier en lot</div>
+            <div style="background:#fff; border:1px solid #CBD5E1; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:600; cursor:pointer;">Clôturer le trimestre</div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- 4 · EMPLOI DU TEMPS -->
+      <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Emploi du temps — 11<sup>e</sup> TSE</h1>
+            <div style="font-size:13px; color:#64748B;">Semaine du 12 au 17 janvier · 7h30–12h30 et 15h–17h30</div>
+          </div>
+          <div style="display:flex; gap:9px; flex-wrap:wrap;">
+            <div style="background:#fff; border:1px solid #CBD5E1; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:600; cursor:pointer;">Vue enseignant</div>
+            <div style="background:#2563EB; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">Publier la semaine</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap;">
+          <div style="flex:1; min-width:320px; background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:16px; overflow-x:auto;">
+            <div style="min-width:640px; display:grid; grid-template-columns:62px repeat(6, 1fr); gap:6px;">
+              <div></div>
+              <div style="font-size:12px; font-weight:700; text-align:center; padding-bottom:6px;">Lundi</div>
+              <div style="font-size:12px; font-weight:700; text-align:center; padding-bottom:6px;">Mardi</div>
+              <div style="font-size:12px; font-weight:700; text-align:center; padding-bottom:6px;">Mercredi</div>
+              <div style="font-size:12px; font-weight:700; text-align:center; padding-bottom:6px;">Jeudi</div>
+              <div style="font-size:12px; font-weight:700; text-align:center; padding-bottom:6px;">Vendredi</div>
+              <div style="font-size:12px; font-weight:700; text-align:center; padding-bottom:6px;">Samedi</div>
+
+              <div style="font-size:11px; color:#64748B; text-align:right; padding-right:6px; padding-top:9px;">7h30</div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px; min-height:52px;"><div style="font-size:12px; font-weight:700;">Maths</div><div style="font-size:10.5px; color:#64748B;">S. Diallo · B2</div></div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700;">Physique-Chimie</div><div style="font-size:10.5px; color:#64748B;">C. Traoré · Labo</div></div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700;">Français</div><div style="font-size:10.5px; color:#64748B;">A. Coulibaly · B2</div></div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700;">Maths</div><div style="font-size:10.5px; color:#64748B;">S. Diallo · B2</div></div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700;">SVT</div><div style="font-size:10.5px; color:#64748B;">F. Sidibé · Labo</div></div>
+              <div style="background:#F8FAFC; border:1px dashed #CBD5E1; border-radius:7px;"></div>
+
+              <div style="font-size:11px; color:#64748B; text-align:right; padding-right:6px; padding-top:9px;">9h30</div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px; min-height:52px;"><div style="font-size:12px; font-weight:700;">Anglais</div><div style="font-size:10.5px; color:#64748B;">M. Keïta · B2</div></div>
+              <div style="background:#FEF2F2; border-left:3px solid #DC2626; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700; color:#991B1B;">Physique-Chimie</div><div style="font-size:10.5px; color:#B91C1C;">Annulé · absence</div></div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700;">Histoire-Géo</div><div style="font-size:10.5px; color:#64748B;">B. Dembélé · B2</div></div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700;">Informatique</div><div style="font-size:10.5px; color:#64748B;">O. Cissé · Salle info</div></div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700;">Maths</div><div style="font-size:10.5px; color:#64748B;">S. Diallo · B2</div></div>
+              <div style="background:#F8FAFC; border:1px dashed #CBD5E1; border-radius:7px;"></div>
+
+              <div style="font-size:11px; color:#64748B; text-align:right; padding-right:6px; padding-top:9px;">11h00</div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px; min-height:52px;"><div style="font-size:12px; font-weight:700;">SVT</div><div style="font-size:10.5px; color:#64748B;">F. Sidibé · Labo</div></div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700;">Philosophie</div><div style="font-size:10.5px; color:#64748B;">A. Maïga · B2</div></div>
+              <div style="background:#F8FAFC; border:1px dashed #CBD5E1; border-radius:7px;"></div>
+              <div style="background:#FFF7ED; border-left:3px solid #F97316; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700; color:#9A3412;">Français</div><div style="font-size:10.5px; color:#C2410C;">Déplacé depuis mardi</div></div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700;">ECM</div><div style="font-size:10.5px; color:#64748B;">B. Dembélé · B2</div></div>
+              <div style="background:#F8FAFC; border:1px dashed #CBD5E1; border-radius:7px;"></div>
+
+              <div style="grid-column:1 / -1; padding:8px 0; font-size:11px; color:#94A3B8; text-align:center; letter-spacing:0.05em;">PAUSE — 12h30 à 15h00</div>
+
+              <div style="font-size:11px; color:#64748B; text-align:right; padding-right:6px; padding-top:9px;">15h00</div>
+              <div style="background:#F8FAFC; border:1px dashed #CBD5E1; border-radius:7px; min-height:52px;"></div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700;">EPS</div><div style="font-size:10.5px; color:#64748B;">I. Bagayoko · Terrain</div></div>
+              <div style="background:#F8FAFC; border:1px dashed #CBD5E1; border-radius:7px;"></div>
+              <div style="background:#FEF2F2; border:2px solid #DC2626; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700; color:#991B1B;">Maths</div><div style="font-size:10.5px; color:#B91C1C;">Conflit : salle B2 occupée</div></div>
+              <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:7px; padding:9px 10px;"><div style="font-size:12px; font-weight:700;">Anglais</div><div style="font-size:10.5px; color:#64748B;">M. Keïta · B2</div></div>
+              <div style="background:#F8FAFC; border:1px dashed #CBD5E1; border-radius:7px;"></div>
+            </div>
+          </div>
+
+          <div style="width:252px; flex:none; display:flex; flex-direction:column; gap:14px;">
+            <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:16px; display:flex; flex-direction:column; gap:11px;">
+              <div style="font-size:13.5px; font-weight:700;">Matières à placer</div>
+              <div style="font-size:11.5px; color:#64748B; line-height:1.45;">Glissez une matière dans un créneau libre.</div>
+              <div style="display:flex; flex-direction:column; gap:7px;">
+                <div style="border:1px solid #E2E8F0; border-radius:8px; padding:9px 11px; font-size:12.5px; font-weight:600; cursor:grab; display:flex; justify-content:space-between;"><span>Philosophie</span><span style="color:#94A3B8; font-weight:500;">2 h</span></div>
+                <div style="border:1px solid #E2E8F0; border-radius:8px; padding:9px 11px; font-size:12.5px; font-weight:600; cursor:grab; display:flex; justify-content:space-between;"><span>Histoire-Géo</span><span style="color:#94A3B8; font-weight:500;">1 h</span></div>
+                <div style="border:1px solid #E2E8F0; border-radius:8px; padding:9px 11px; font-size:12.5px; font-weight:600; cursor:grab; display:flex; justify-content:space-between;"><span>Informatique</span><span style="color:#94A3B8; font-weight:500;">2 h</span></div>
+              </div>
+            </div>
+            <div style="background:#FEF2F2; border:1px solid #FECACA; border-radius:13px; padding:16px; display:flex; flex-direction:column; gap:9px;">
+              <div style="font-size:13.5px; font-weight:700; color:#991B1B;">1 conflit détecté</div>
+              <div style="font-size:12px; color:#B91C1C; line-height:1.5;">Jeudi 15h — la salle B2 est déjà occupée par la 12<sup>e</sup> TLL.</div>
+              <div style="background:#fff; border:1px solid #FECACA; border-radius:8px; padding:8px 11px; font-size:12px; font-weight:700; color:#991B1B; cursor:pointer; text-align:center;">Résoudre</div>
+            </div>
+            <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:16px; display:flex; flex-direction:column; gap:9px;">
+              <div style="font-size:13.5px; font-weight:700;">Légende</div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:12px;"><span style="width:11px; height:11px; border-radius:3px; background:#2563EB; display:block;"></span>Cours normal</div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:12px;"><span style="width:11px; height:11px; border-radius:3px; background:#F97316; display:block;"></span>Cours déplacé</div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:12px;"><span style="width:11px; height:11px; border-radius:3px; background:#DC2626; display:block;"></span>Annulé ou en conflit</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- 5 · ESPACE ENSEIGNANT -->
+      <sc-if value="{{ s4 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Ma journée</h1>
+            <div style="font-size:13px; color:#64748B;">M. Sékou Diallo · Mathématiques · jeudi 15 janvier</div>
+          </div>
+          <div onClick="{{ ouvrirAppel }}" style="background:#F97316; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">{{ appelLabel }}</div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
+          <div style="background:#102A43; color:#fff; border-radius:13px; padding:20px; display:flex; flex-direction:column; gap:12px;">
+            <div style="font-size:11px; letter-spacing:0.1em; color:#8FA8C4; font-weight:700;">PROCHAIN COURS — DANS 12 MIN</div>
+            <div style="font-size:21px; font-weight:800;">Mathématiques · 11<sup>e</sup> TSE</div>
+            <div style="font-size:13px; color:#C6D6E8;">09h30 – 11h00 · salle B2 · 24 élèves</div>
+            <div style="display:flex; gap:9px; flex-wrap:wrap; padding-top:4px;">
+              <div onClick="{{ ouvrirAppel }}" style="background:#F97316; border-radius:9px; padding:9px 14px; font-size:12.5px; font-weight:700; cursor:pointer;">Faire l'appel</div>
+              <div style="background:#16324F; border-radius:9px; padding:9px 14px; font-size:12.5px; font-weight:600; cursor:pointer;">Cahier de texte</div>
+            </div>
+          </div>
+
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:12px;">
+            <div style="font-size:14.5px; font-weight:700;">Planning du jour</div>
+            <div style="display:flex; flex-direction:column;">
+              <div style="display:flex; gap:14px; padding:10px 0; border-bottom:1px solid #F1F5F9; align-items:center;"><span style="font-size:12.5px; font-weight:700; color:#94A3B8; width:46px; flex:none;">07h30</span><span style="font-size:13px; color:#94A3B8; text-decoration:line-through;">Maths · 10<sup>e</sup> A</span><span style="margin-left:auto; font-size:11.5px; color:#16A34A; font-weight:700;">Appel fait</span></div>
+              <div style="display:flex; gap:14px; padding:10px 0; border-bottom:1px solid #F1F5F9; align-items:center; background:#EFF6FF; border-radius:8px; padding-left:8px; padding-right:8px;"><span style="font-size:12.5px; font-weight:700; width:46px; flex:none;">09h30</span><span style="font-size:13px; font-weight:600;">Maths · 11<sup>e</sup> TSE</span><span style="margin-left:auto; font-size:11.5px; color:#C2410C; font-weight:700;">À venir</span></div>
+              <div style="display:flex; gap:14px; padding:10px 0; border-bottom:1px solid #F1F5F9; align-items:center;"><span style="font-size:12.5px; font-weight:700; width:46px; flex:none;">11h00</span><span style="font-size:13px;">Maths · 9<sup>e</sup> B</span><span style="margin-left:auto; font-size:11.5px; color:#64748B;">Salle A1</span></div>
+              <div style="display:flex; gap:14px; padding:10px 0; align-items:center;"><span style="font-size:12.5px; font-weight:700; width:46px; flex:none;">15h00</span><span style="font-size:13px;">Maths · 12<sup>e</sup> TSE</span><span style="margin-left:auto; font-size:11.5px; color:#64748B;">Salle B2</span></div>
+            </div>
+          </div>
+        </div>
+
+        <sc-if value="{{ appelOuvert }}" hint-placeholder-val="{{ true }}">
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; overflow:hidden;">
+          <div style="padding:18px 20px; border-bottom:1px solid #E2E8F0; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+            <div style="display:flex; flex-direction:column; gap:3px;">
+              <div style="font-size:16px; font-weight:800;">Appel en direct — 11<sup>e</sup> TSE</div>
+              <div style="font-size:12.5px; color:#64748B;">Mathématiques · jeudi 15 janvier, 09h30 · 24 élèves</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:9px; flex-wrap:wrap;">
+              <span style="font-size:11.5px; color:#16A34A; font-weight:700; display:flex; align-items:center; gap:6px;"><span style="width:7px; height:7px; border-radius:50%; background:#16A34A; display:block;"></span>Enregistré hors connexion</span>
+              <div onClick="{{ tousPresents }}" style="border:1px solid #CBD5E1; border-radius:9px; padding:9px 14px; font-size:12.5px; font-weight:600; cursor:pointer;">Tous présents</div>
+              <div style="background:#16A34A; color:#fff; border-radius:9px; padding:9px 14px; font-size:12.5px; font-weight:700; cursor:pointer;">Envoyer l'appel</div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:20px; padding:14px 20px; border-bottom:1px solid #F1F5F9; flex-wrap:wrap;">
+            <div style="font-size:12.5px;"><span style="font-weight:800; color:#16A34A;">{{ nbPresents }}</span> <span style="color:#64748B;">présents</span></div>
+            <div style="font-size:12.5px;"><span style="font-weight:800; color:#DC2626;">{{ nbAbsents }}</span> <span style="color:#64748B;">absents</span></div>
+            <div style="font-size:12.5px;"><span style="font-weight:800; color:#F97316;">{{ nbRetards }}</span> <span style="color:#64748B;">retards</span></div>
+            <div style="font-size:12.5px; color:#64748B; margin-left:auto;">Les parents des absents reçoivent un SMS et une notification.</div>
+          </div>
+
+          <sc-for list="{{ appel }}" as="a" hint-placeholder-count="8">
+            <div style="display:flex; align-items:center; gap:14px; padding:11px 20px; border-bottom:1px solid #F1F5F9; flex-wrap:wrap;">
+              <div style="width:36px; height:36px; border-radius:50%; background:#EFF6FF; color:#2563EB; display:flex; align-items:center; justify-content:center; font-size:12.5px; font-weight:700; flex:none;">{{ a.ini }}</div>
+              <div style="display:flex; flex-direction:column; gap:1px; min-width:170px;">
+                <div style="font-size:13.5px; font-weight:600;">{{ a.nom }}</div>
+                <div style="font-size:11.5px; color:#64748B;">{{ a.note }}</div>
+              </div>
+              <div style="display:flex; gap:6px; margin-left:auto; flex-wrap:wrap;">
+                <div onClick="{{ a.setP }}" style="border-radius:8px; padding:8px 14px; font-size:12.5px; font-weight:700; cursor:pointer; min-height:34px; background: {{ a.pBg }}; color: {{ a.pFg }}; border:1px solid {{ a.pBd }};">Présent</div>
+                <div onClick="{{ a.setA }}" style="border-radius:8px; padding:8px 14px; font-size:12.5px; font-weight:700; cursor:pointer; min-height:34px; background: {{ a.aBg }}; color: {{ a.aFg }}; border:1px solid {{ a.aBd }};">Absent</div>
+                <div onClick="{{ a.setR }}" style="border-radius:8px; padding:8px 14px; font-size:12.5px; font-weight:700; cursor:pointer; min-height:34px; background: {{ a.rBg }}; color: {{ a.rFg }}; border:1px solid {{ a.rBd }};">Retard</div>
+                <div onClick="{{ a.setE }}" style="border-radius:8px; padding:8px 14px; font-size:12.5px; font-weight:700; cursor:pointer; min-height:34px; background: {{ a.eBg }}; color: {{ a.eFg }}; border:1px solid {{ a.eBd }};">Excusé</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+      </div>
+      </sc-if>
+
+      <!-- 6 · MESSAGERIE -->
+      <sc-if value="{{ s5 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Messagerie interne</h1>
+            <div style="font-size:13px; color:#64748B;">Administration → parents, enseignants et classes entières</div>
+          </div>
+          <div style="background:#F97316; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">Nouvelle diffusion</div>
+        </div>
+
+        <div style="display:flex; gap:16px; align-items:stretch; flex-wrap:wrap;">
+          <div style="width:290px; flex:1 1 260px; min-width:240px; background:#fff; border:1px solid #E2E8F0; border-radius:13px; overflow:hidden; display:flex; flex-direction:column;">
+            <div style="padding:13px 16px; border-bottom:1px solid #E2E8F0; font-size:12.5px; color:#94A3B8; background:#F8FAFC;">Rechercher une conversation…</div>
+            <sc-for list="{{ convs }}" as="c" hint-placeholder-count="5">
+              <div onClick="{{ c.select }}" style="padding:14px 16px; border-bottom:1px solid #F1F5F9; cursor:pointer; display:flex; flex-direction:column; gap:4px; background: {{ c.bg }};">
+                <div style="display:flex; align-items:center; gap:9px;">
+                  <span style="width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11.5px; font-weight:700; flex:none; background: {{ c.avBg }}; color: {{ c.avFg }};">{{ c.ini }}</span>
+                  <span style="font-size:13px; font-weight:700; flex:1; min-width:0;">{{ c.nom }}</span>
+                  <span style="font-size:10.5px; color:#94A3B8;">{{ c.heure }}</span>
+                </div>
+                <div style="font-size:11.5px; color:#64748B; line-height:1.4;">{{ c.extrait }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="flex:2 1 380px; min-width:300px; background:#fff; border:1px solid #E2E8F0; border-radius:13px; display:flex; flex-direction:column; overflow:hidden;">
+            <div style="padding:15px 18px; border-bottom:1px solid #E2E8F0; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+              <div style="display:flex; flex-direction:column; gap:2px;">
+                <div style="font-size:14.5px; font-weight:700;">{{ convNom }}</div>
+                <div style="font-size:11.5px; color:#64748B;">{{ convSous }}</div>
+              </div>
+              <div style="font-size:11.5px; color:#16A34A; font-weight:700;">{{ convLu }}</div>
+            </div>
+
+            <div style="flex:1; padding:18px; display:flex; flex-direction:column; gap:12px; background:#F8FAFC; min-height:280px;">
+              <sc-for list="{{ msgs }}" as="m" hint-placeholder-count="4">
+                <div style="display:flex; justify-content: {{ m.align }};">
+                  <div style="max-width:78%; border-radius:13px; padding:11px 14px; font-size:13px; line-height:1.5; background: {{ m.bg }}; color: {{ m.fg }}; border:1px solid {{ m.bd }};">
+                    <div style="font-size:11px; font-weight:700; opacity:0.75; padding-bottom:3px;">{{ m.auteur }}</div>
+                    {{ m.texte }}
+                    <div style="font-size:10.5px; opacity:0.6; padding-top:5px;">{{ m.heure }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="padding:14px 18px; border-top:1px solid #E2E8F0; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <div style="flex:1; min-width:180px; background:#F1F5F9; border:1px solid #E2E8F0; border-radius:9px; padding:11px 13px; font-size:13px; color:#94A3B8;">Écrire un message…</div>
+              <div style="border:1px solid #CBD5E1; border-radius:9px; padding:10px 13px; font-size:12.5px; font-weight:600; cursor:pointer;">Pièce jointe</div>
+              <div style="background:#2563EB; color:#fff; border-radius:9px; padding:10px 17px; font-size:12.5px; font-weight:700; cursor:pointer;">Envoyer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- 7 · FICHE ÉLÈVE -->
+      <sc-if value="{{ s6 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="font-size:12.5px; color:#64748B;"><span onClick="{{ go1 }}" style="cursor:pointer; color:#2563EB; font-weight:600;">Classes et élèves</span> · 11<sup>e</sup> TSE · Aïchata Bagayoko</div>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:22px; display:flex; gap:22px; align-items:flex-start; flex-wrap:wrap;">
+          <div style="width:74px; height:74px; border-radius:50%; background:#102A43; color:#fff; display:flex; align-items:center; justify-content:center; font-size:25px; font-weight:800; flex:none;">AB</div>
+          <div style="flex:1; min-width:230px; display:flex; flex-direction:column; gap:7px;">
+            <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Aïchata Bagayoko</h1>
+            <div style="font-size:13px; color:#64748B;">Matricule AD-2312 · née le 4 mars 2009 à Bamako · 11<sup>e</sup> TSE</div>
+            <div style="display:flex; gap:7px; flex-wrap:wrap; padding-top:4px;">
+              <span style="background:#DCFCE7; color:#166534; border-radius:20px; padding:4px 11px; font-size:11.5px; font-weight:700;">1<sup>re</sup> de la classe</span>
+              <span style="background:#EFF6FF; color:#1E40AF; border-radius:20px; padding:4px 11px; font-size:11.5px; font-weight:700;">Écolage à jour</span>
+              <span style="background:#F1F5F9; color:#475569; border-radius:20px; padding:4px 11px; font-size:11.5px; font-weight:700;">Inscrite depuis 2021</span>
+            </div>
+          </div>
+          <div style="display:flex; gap:9px; flex-wrap:wrap;">
+            <div onClick="{{ go7 }}" style="background:#102A43; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">Voir le bulletin</div>
+            <div style="background:#fff; border:1px solid #CBD5E1; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:600; cursor:pointer;">Contacter le tuteur</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px;">
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:5px;"><div style="font-size:12px; color:#64748B; font-weight:600;">Moyenne T2</div><div style="font-size:27px; font-weight:800;">15,25<span style="font-size:14px; color:#64748B;">/20</span></div></div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:5px;"><div style="font-size:12px; color:#64748B; font-weight:600;">Rang</div><div style="font-size:27px; font-weight:800;">1<sup style="font-size:14px;">er</sup> <span style="font-size:14px; color:#64748B; font-weight:700;">/ 24</span></div></div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:5px;"><div style="font-size:12px; color:#64748B; font-weight:600;">Absences</div><div style="font-size:27px; font-weight:800; color:#16A34A;">0</div></div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:17px 18px; display:flex; flex-direction:column; gap:5px;"><div style="font-size:12px; color:#64748B; font-weight:600;">Retards</div><div style="font-size:27px; font-weight:800;">1</div></div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:16px;">
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:14px;">
+            <div style="font-size:14.5px; font-weight:700;">Moyennes par matière — T2</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <sc-for list="{{ bulletin }}" as="b" hint-placeholder-count="10">
+                <div style="display:flex; flex-direction:column; gap:4px;">
+                  <div style="display:flex; justify-content:space-between; font-size:12.5px;"><span style="font-weight:600;">{{ b.mat }}</span><span style="color:#64748B;">{{ b.moy }} · classe {{ b.mc }}</span></div>
+                  <div style="height:6px; background:#F1F5F9; border-radius:5px;"><div style="height:100%; background:#2563EB; border-radius:5px; width: {{ b.barre }};"></div></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:12px;">
+              <div style="font-size:14.5px; font-weight:700;">Responsables légaux</div>
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; gap:12px; align-items:center;"><span style="width:34px; height:34px; border-radius:50%; background:#EFF6FF; color:#2563EB; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex:none;">MB</span><div style="display:flex; flex-direction:column;"><span style="font-size:13px; font-weight:600;">M. Modibo Bagayoko — père</span><span style="font-size:11.5px; color:#64748B;">+223 76 24 18 05 · application installée</span></div></div>
+                <div style="display:flex; gap:12px; align-items:center;"><span style="width:34px; height:34px; border-radius:50%; background:#EFF6FF; color:#2563EB; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex:none;">SB</span><div style="display:flex; flex-direction:column;"><span style="font-size:13px; font-weight:600;">Mme Salimata Bagayoko — mère</span><span style="font-size:11.5px; color:#64748B;">+223 66 91 33 42 · SMS uniquement</span></div></div>
+              </div>
+            </div>
+            <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:12px;">
+              <div style="font-size:14.5px; font-weight:700;">Scolarité</div>
+              <div style="display:flex; flex-direction:column;">
+                <div style="display:flex; justify-content:space-between; font-size:12.5px; padding:8px 0; border-bottom:1px solid #F1F5F9;"><span style="color:#64748B;">Écolage annuel</span><span style="font-weight:700;">135 000 FCFA</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:12.5px; padding:8px 0; border-bottom:1px solid #F1F5F9;"><span style="color:#64748B;">Versé à ce jour</span><span style="font-weight:700; color:#16A34A;">90 000 FCFA</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:12.5px; padding:8px 0;"><span style="color:#64748B;">Solde</span><span style="font-weight:700;">45 000 FCFA — échéance 31 janv.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- 8 · BULLETIN A4 -->
+      <sc-if value="{{ s7 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:16px; align-items:center;">
+        <div style="width:100%; max-width:840px; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:3px;">
+            <h1 style="margin:0; font-size:21px; font-weight:800; letter-spacing:-0.02em;">Prévisualisation du bulletin</h1>
+            <div style="font-size:12.5px; color:#64748B;">Format A4 · lisible en noir et blanc · identifiant unique vérifiable</div>
+          </div>
+          <div style="display:flex; gap:9px; flex-wrap:wrap;">
+            <div onClick="{{ go2 }}" style="background:#fff; border:1px solid #CBD5E1; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:600; cursor:pointer;">Retour</div>
+            <div style="background:#2563EB; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">Exporter en PDF</div>
+          </div>
+        </div>
+
+        <div style="width:100%; max-width:840px; background:#fff; border:1px solid #E2E8F0; box-shadow:0 2px 14px rgba(16,42,67,0.07); padding:42px 46px; display:flex; flex-direction:column; gap:20px; color:#111827;">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:20px; border-bottom:2px solid #102A43; padding-bottom:16px; flex-wrap:wrap;">
+            <div style="display:flex; gap:14px; align-items:center;">
+              <img src="assets/orokia-logo.png" alt="OROKIA" style="height:38px; width:auto; display:block;">
+              <div style="display:flex; flex-direction:column; gap:2px; border-left:1px solid #CBD5E1; padding-left:14px;">
+                <div style="font-size:14px; font-weight:800;">École Awa Danté</div>
+                <div style="font-size:11px; color:#4B5563;">Médina Coura, Bamako · Établissement privé</div>
+                <div style="font-size:11px; color:#4B5563;">Académie d'enseignement de Bamako Rive Gauche</div>
+              </div>
+            </div>
+            <div style="text-align:right; display:flex; flex-direction:column; gap:2px;">
+              <div style="font-size:15px; font-weight:800;">BULLETIN DE NOTES</div>
+              <div style="font-size:11.5px; color:#4B5563;">2<sup>e</sup> trimestre — année scolaire 2025–2026</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:14px; background:#F8FAFC; border:1px solid #E5E7EB; padding:14px 16px;">
+            <div style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:10px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">ÉLÈVE</span><span style="font-size:13.5px; font-weight:700;">Aïchata Bagayoko</span></div>
+            <div style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:10px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">MATRICULE</span><span style="font-size:13.5px; font-weight:700;">AD-2312</span></div>
+            <div style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:10px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">CLASSE</span><span style="font-size:13.5px; font-weight:700;">11<sup>e</sup> TSE — 24 élèves</span></div>
+            <div style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:10px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">NÉE LE</span><span style="font-size:13.5px; font-weight:700;">04/03/2009 à Bamako</span></div>
+          </div>
+
+          <table style="width:100%; font-size:11.5px;">
+            <thead>
+              <tr style="background:#102A43; color:#fff; text-align:left;">
+                <th style="padding:8px 10px; font-weight:700;">MATIÈRE</th>
+                <th style="padding:8px 6px; font-weight:700; text-align:center;">COEF</th>
+                <th style="padding:8px 6px; font-weight:700; text-align:center;">DEV. 1</th>
+                <th style="padding:8px 6px; font-weight:700; text-align:center;">DEV. 2</th>
+                <th style="padding:8px 6px; font-weight:700; text-align:center;">COMPO</th>
+                <th style="padding:8px 6px; font-weight:700; text-align:center;">MOY.</th>
+                <th style="padding:8px 6px; font-weight:700; text-align:center;">M×C</th>
+                <th style="padding:8px 6px; font-weight:700; text-align:center;">CLASSE</th>
+                <th style="padding:8px 10px; font-weight:700;">APPRÉCIATION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <sc-for list="{{ bulletin }}" as="b" hint-placeholder-count="10">
+                <tr style="border-bottom:1px solid #E5E7EB;">
+                  <td style="padding:7px 10px; font-weight:600;">{{ b.mat }}</td>
+                  <td style="padding:7px 6px; text-align:center;">{{ b.coef }}</td>
+                  <td style="padding:7px 6px; text-align:center;">{{ b.d1 }}</td>
+                  <td style="padding:7px 6px; text-align:center;">{{ b.d2 }}</td>
+                  <td style="padding:7px 6px; text-align:center;">{{ b.co }}</td>
+                  <td style="padding:7px 6px; text-align:center; font-weight:800; color: {{ b.moyColor }};">{{ b.moy }}</td>
+                  <td style="padding:7px 6px; text-align:center; color:#4B5563;">{{ b.total }}</td>
+                  <td style="padding:7px 6px; text-align:center; color:#6B7280;">{{ b.mc }}</td>
+                  <td style="padding:7px 10px; color:#374151;">{{ b.app }}</td>
+                </tr>
+              </sc-for>
+              <tr style="background:#F3F4F6; border-top:2px solid #102A43;">
+                <td style="padding:9px 10px; font-weight:800;">TOTAL</td>
+                <td style="padding:9px 6px; text-align:center; font-weight:800;">22</td>
+                <td colspan="3"></td>
+                <td style="padding:9px 6px; text-align:center; font-weight:800;">14,86</td>
+                <td style="padding:9px 6px; text-align:center; font-weight:800;">326,75</td>
+                <td colspan="2"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px;">
+            <div style="border:1px solid #E5E7EB; padding:12px 14px; display:flex; flex-direction:column; gap:3px;"><span style="font-size:10px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">MOYENNE GÉNÉRALE</span><span style="font-size:20px; font-weight:800;">14,86 / 20</span></div>
+            <div style="border:1px solid #E5E7EB; padding:12px 14px; display:flex; flex-direction:column; gap:3px;"><span style="font-size:10px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">RANG</span><span style="font-size:20px; font-weight:800;">1<sup style="font-size:12px;">er</sup> sur 24</span></div>
+            <div style="border:1px solid #E5E7EB; padding:12px 14px; display:flex; flex-direction:column; gap:3px;"><span style="font-size:10px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">MOYENNE DE CLASSE</span><span style="font-size:20px; font-weight:800;">12,40 / 20</span></div>
+            <div style="border:1px solid #E5E7EB; padding:12px 14px; display:flex; flex-direction:column; gap:3px;"><span style="font-size:10px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">ABSENCES / RETARDS</span><span style="font-size:20px; font-weight:800;">0 j. · 1 retard</span></div>
+          </div>
+
+          <div style="border:1px solid #E5E7EB; padding:14px 16px; display:flex; flex-direction:column; gap:6px;">
+            <span style="font-size:10px; letter-spacing:0.06em; color:#6B7280; font-weight:700;">APPRÉCIATION GÉNÉRALE DU CONSEIL DE CLASSE</span>
+            <span style="font-size:12.5px; line-height:1.55;">Trimestre remarquable. Aïchata fait preuve d'une grande rigueur et entraîne la classe vers le haut. Encouragements du conseil de classe.</span>
+            <span style="font-size:12.5px; font-weight:800; padding-top:4px;">Décision : Tableau d'honneur — admise à poursuivre en série TSE.</span>
+          </div>
+
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; padding-top:8px; flex-wrap:wrap;">
+            <div style="display:flex; gap:16px; align-items:flex-end;">
+              <div style="width:66px; height:66px; background:#111827; flex:none;"></div>
+              <div style="display:flex; flex-direction:column; gap:3px; font-size:10.5px; color:#4B5563; line-height:1.5;">
+                <span style="font-weight:700; color:#111827;">Vérification du document</span>
+                <span>Identifiant : BUL-2026-T2-AD2312-7K4Q</span>
+                <span>verifier.orokia.ml</span>
+              </div>
+            </div>
+            <div style="display:flex; gap:34px; flex-wrap:wrap;">
+              <div style="display:flex; flex-direction:column; gap:26px; align-items:center;"><span style="font-size:10.5px; color:#4B5563;">Le professeur principal</span><span style="border-top:1px solid #9CA3AF; width:150px; font-size:10px; color:#6B7280; padding-top:4px; text-align:center;">M. Sékou Diallo</span></div>
+              <div style="display:flex; flex-direction:column; gap:26px; align-items:center;"><span style="font-size:10.5px; color:#4B5563;">La direction · cachet</span><span style="border-top:1px solid #9CA3AF; width:150px; font-size:10px; color:#6B7280; padding-top:4px; text-align:center;">Mme Aminata Dolo</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- 9 · ANNONCES -->
+      <sc-if value="{{ s8 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Annonces</h1>
+            <div style="font-size:13px; color:#64748B;">Publiées dans l'application des parents et des élèves, avec SMS de secours</div>
+          </div>
+          <div style="background:#F97316; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">Nouvelle annonce</div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(330px, 1fr)); gap:14px;">
+          <sc-for list="{{ annonces }}" as="a" hint-placeholder-count="4">
+            <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:18px 20px; display:flex; flex-direction:column; gap:9px;">
+              <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
+                <div style="font-size:14.5px; font-weight:700; line-height:1.35;">{{ a.titre }}</div>
+                <span style="border-radius:20px; padding:3px 10px; font-size:11px; font-weight:700; flex:none; background: {{ a.bg }}; color: {{ a.fg }};">{{ a.statut }}</span>
+              </div>
+              <div style="font-size:12.5px; color:#475569; line-height:1.55;">{{ a.corps }}</div>
+              <div style="display:flex; justify-content:space-between; gap:12px; font-size:11.5px; color:#64748B; border-top:1px solid #F1F5F9; padding-top:10px; flex-wrap:wrap;">
+                <span>{{ a.cible }}</span><span>{{ a.date }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- 10 · COMPTES ET PERMISSIONS -->
+      <sc-if value="{{ s9 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Comptes et permissions</h1>
+            <div style="font-size:13px; color:#64748B;">Un enseignant n'accède qu'aux classes qui lui sont affectées</div>
+          </div>
+          <div style="background:#2563EB; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">Inviter un utilisateur</div>
+        </div>
+
+        <div style="background:#FFF7ED; border:1px solid #FED7AA; border-radius:13px; padding:15px 18px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+          <div style="font-size:12.5px; color:#9A3412; line-height:1.5; flex:1; min-width:240px;">La double authentification n'est pas activée sur 1 compte administratif. Elle est obligatoire pour accéder aux notes et aux bulletins.</div>
+          <div style="background:#fff; border:1px solid #FED7AA; border-radius:9px; padding:9px 14px; font-size:12.5px; font-weight:700; color:#9A3412; cursor:pointer;">Exiger l'activation</div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; overflow:hidden;">
+          <div style="overflow-x:auto;">
+          <table style="width:100%; min-width:780px; font-size:13px;">
+            <thead><tr style="background:#F8FAFC; text-align:left;">
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">UTILISATEUR</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">RÔLE</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">PORTÉE D'ACCÈS</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">2FA</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">DERNIÈRE CONNEXION</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">ÉTAT</th>
+            </tr></thead>
+            <tbody>
+              <sc-for list="{{ comptes }}" as="c" hint-placeholder-count="5">
+                <tr style="border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:14px 18px; font-weight:700;">{{ c.nom }}</td>
+                  <td style="padding:14px 18px; color:#475569;">{{ c.role }}</td>
+                  <td style="padding:14px 18px; color:#475569;">{{ c.portee }}</td>
+                  <td style="padding:14px 18px; font-weight:600; color: {{ c.a2fColor }};">{{ c.a2f }}</td>
+                  <td style="padding:14px 18px; color:#64748B;">{{ c.vu }}</td>
+                  <td style="padding:14px 18px;"><span style="border-radius:20px; padding:3px 10px; font-size:11.5px; font-weight:700; background: {{ c.etatBg }}; color: {{ c.etatFg }};">{{ c.etat }}</span></td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:12px;">
+          <div style="font-size:14.5px; font-weight:700;">Journal des actions sensibles</div>
+          <div style="display:flex; flex-direction:column;">
+            <sc-for list="{{ journal }}" as="j" hint-placeholder-count="4">
+              <div style="display:flex; gap:14px; padding:11px 0; border-bottom:1px solid #F1F5F9; flex-wrap:wrap; align-items:baseline;">
+                <span style="font-size:13px; font-weight:700; min-width:130px;">{{ j.qui }}</span>
+                <span style="font-size:12.5px; color:#475569; flex:1; min-width:220px;">{{ j.act }}</span>
+                <span style="font-size:12px; font-weight:700; color:#C2410C;">{{ j.q }}</span>
+                <span style="font-size:11.5px; color:#94A3B8;">{{ j.t }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- 11 · CAHIER DE TEXTE -->
+      <sc-if value="{{ s10 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Cahier de texte</h1>
+            <div style="font-size:13px; color:#64748B;">11<sup>e</sup> TSE · Mathématiques · M. Sékou Diallo · signé électroniquement par les familles</div>
+          </div>
+          <div style="background:#2563EB; color:#fff; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer;">Ajouter une séance</div>
+        </div>
+
+        <sc-for list="{{ cahier }}" as="c" hint-placeholder-count="3">
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+              <div style="display:flex; flex-direction:column; gap:3px;">
+                <div style="font-size:15px; font-weight:800;">{{ c.titre }}</div>
+                <div style="font-size:12px; color:#64748B;">{{ c.date }} · {{ c.heure }}</div>
+              </div>
+              <span style="font-size:11.5px; font-weight:700; color:#16A34A; flex:none;">{{ c.etat }}</span>
+            </div>
+            <div style="font-size:13px; color:#334155; line-height:1.6;">{{ c.contenu }}</div>
+            <sc-if value="{{ c.devoir }}" hint-placeholder-val="{{ true }}">
+              <div style="background:#FFF7ED; border:1px solid #FED7AA; border-radius:10px; padding:12px 14px; display:flex; flex-direction:column; gap:3px;">
+                <span style="font-size:10.5px; font-weight:800; letter-spacing:0.06em; color:#9A3412;">DEVOIR DONNÉ</span>
+                <span style="font-size:12.5px; color:#9A3412; line-height:1.5;">{{ c.devoir }}</span>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+      </sc-if>
+
+      <!-- 12 · RAPPORTS ET STATISTIQUES -->
+      <sc-if value="{{ s11 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <h1 style="margin:0; font-size:23px; font-weight:800; letter-spacing:-0.02em;">Rapports et statistiques</h1>
+            <div style="font-size:13px; color:#64748B;">2<sup>e</sup> trimestre 2025–2026 · 352 élèves · comparaison avec le 1<sup>er</sup> trimestre</div>
+          </div>
+          <div style="background:#fff; border:1px solid #CBD5E1; border-radius:9px; padding:10px 15px; font-size:13px; font-weight:600; cursor:pointer;">Exporter en PDF</div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; overflow:hidden;">
+          <div style="overflow-x:auto;">
+          <table style="width:100%; min-width:740px; font-size:13px;">
+            <thead><tr style="background:#F8FAFC; text-align:left;">
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">NIVEAU</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">ÉLÈVES</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">MOYENNE</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0; width:34%;">RÉPARTITION</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">PRÉSENCE</th>
+              <th style="padding:12px 18px; font-size:11px; color:#64748B; font-weight:700; border-bottom:1px solid #E2E8F0;">ÉVOLUTION</th>
+            </tr></thead>
+            <tbody>
+              <sc-for list="{{ stats }}" as="s" hint-placeholder-count="6">
+                <tr style="border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:14px 18px; font-weight:700;">{{ s.niveau }}</td>
+                  <td style="padding:14px 18px; color:#475569;">{{ s.eleves }}</td>
+                  <td style="padding:14px 18px; font-weight:700;">{{ s.moyAff }}</td>
+                  <td style="padding:14px 18px;"><span style="display:block; height:8px; background:#F1F5F9; border-radius:5px;"><span style="display:block; height:100%; background:#2563EB; border-radius:5px; width: {{ s.barre }};"></span></span></td>
+                  <td style="padding:14px 18px; font-weight:600; color: {{ s.presFg }};">{{ s.pres }}</td>
+                  <td style="padding:14px 18px; font-weight:700; color: {{ s.ecartFg }};">{{ s.ecart }}</td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:12px;">
+            <div style="font-size:14.5px; font-weight:700;">Constats du trimestre</div>
+            <div style="font-size:13px; color:#334155; line-height:1.65;">Au primaire, les trois premières années se tiennent au-dessus de 7,4/10 avec une présence de 95,7 %. Le second cycle du primaire recule légèrement, surtout en 6<sup>e</sup> année, année du certificat.</div>
+            <div style="font-size:13px; color:#334155; line-height:1.65;">La 9<sup>e</sup> concentre les difficultés : moyenne en recul de 0,4 point et présence à 88,8 %, sous le seuil de 90 % retenu par l'établissement. Les cinq autres niveaux progressent, le lycée en tête avec +0,9 point en 11<sup>e</sup>.</div>
+            <div style="font-size:13px; color:#334155; line-height:1.65;">Les absences se concentrent sur les créneaux de 07h30, ce qui recoupe les retards signalés depuis la rentrée de janvier.</div>
+          </div>
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:13px; padding:19px 20px; display:flex; flex-direction:column; gap:12px;">
+            <div style="font-size:14.5px; font-weight:700;">Rapports disponibles</div>
+            <div style="display:flex; flex-direction:column;">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid #F1F5F9;"><span style="font-size:13px; font-weight:600;">Assiduité par classe et par créneau</span><span style="font-size:12px; font-weight:700; color:#2563EB; cursor:pointer;">Générer</span></div>
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid #F1F5F9;"><span style="font-size:13px; font-weight:600;">Réussite par matière et par enseignant</span><span style="font-size:12px; font-weight:700; color:#2563EB; cursor:pointer;">Générer</span></div>
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid #F1F5F9;"><span style="font-size:13px; font-weight:600;">Préparation au DEF — classes de 9<sup>e</sup></span><span style="font-size:12px; font-weight:700; color:#2563EB; cursor:pointer;">Générer</span></div>
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:11px 0;"><span style="font-size:13px; font-weight:600;">État de recouvrement de l'écolage</span><span style="font-size:12px; font-weight:700; color:#2563EB; cursor:pointer;">Générer</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+    </main>
+  </div>
+</div>]]>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const ACT = '#173A5E', ACTFG = '#FFFFFF', IDLE = 'transparent', IDLEFG = '#C6D6E8';
+
+const CLASSES = [
+  { nom: '1ʳᵉ année A', prof: 'Mme Rokia Touré', effectif: 28, moyenne: '7,8', presence: '96,4 %', statut: 'Complètes', niveau: 'primaire' },
+  { nom: '2ᵉ année A', prof: 'Mme Aïssata Diarra', effectif: 27, moyenne: '7,4', presence: '95,8 %', statut: 'Complètes', niveau: 'primaire' },
+  { nom: '3ᵉ année A', prof: 'M. Lassine Koné', effectif: 26, moyenne: '7,1', presence: '94,9 %', statut: 'Complètes', niveau: 'primaire' },
+  { nom: '4ᵉ année A', prof: 'Mme Nana Cissé', effectif: 25, moyenne: '6,9', presence: '93,2 %', statut: '2 manquantes', niveau: 'primaire' },
+  { nom: '5ᵉ année A', prof: 'M. Yaya Sanogo', effectif: 24, moyenne: '7,3', presence: '94,1 %', statut: 'Complètes', niveau: 'primaire' },
+  { nom: '6ᵉ année A', prof: 'Mme Djeneba Fofana', effectif: 22, moyenne: '6,7', presence: '92,5 %', statut: '4 manquantes', niveau: 'primaire' },
+  { nom: '7ᵉ A', prof: 'Mme Assitan Coulibaly', effectif: 26, moyenne: '11,9', presence: '94,2 %', statut: 'Complètes', niveau: 'college' },
+  { nom: '7ᵉ B', prof: 'M. Drissa Kané', effectif: 24, moyenne: '11,7', presence: '92,8 %', statut: '3 manquantes', niveau: 'college' },
+  { nom: '8ᵉ A', prof: 'Mme Hawa Konaté', effectif: 23, moyenne: '12,1', presence: '95,0 %', statut: 'Complètes', niveau: 'college' },
+  { nom: '9ᵉ A', prof: 'M. Bakary Dembélé', effectif: 22, moyenne: '11,5', presence: '91,4 %', statut: 'Complètes', niveau: 'college' },
+  { nom: '9ᵉ B', prof: 'Mme Fatoumata Sidibé', effectif: 21, moyenne: '10,9', presence: '86,1 %', statut: '5 manquantes', niveau: 'college' },
+  { nom: '10ᵉ tronc commun', prof: 'M. Oumar Cissé', effectif: 25, moyenne: '12,9', presence: '94,6 %', statut: 'Complètes', niveau: 'lycee' },
+  { nom: '11ᵉ TSE', prof: 'M. Sékou Diallo', effectif: 24, moyenne: '13,4', presence: '96,2 %', statut: 'À valider', niveau: 'lycee' },
+  { nom: '11ᵉ TSS', prof: 'Mme Aminata Maïga', effectif: 19, moyenne: '12,8', presence: '93,7 %', statut: 'À valider', niveau: 'lycee' },
+  { nom: '12ᵉ TLL', prof: 'M. Moussa Keïta', effectif: 16, moyenne: '12,6', presence: '92,1 %', statut: 'À valider', niveau: 'lycee' }
+];
+
+const BADGE = {
+  'Complètes': ['#DCFCE7', '#166534'],
+  'À valider': ['#FFEDD5', '#9A3412'],
+  '2 manquantes': ['#FEF3C7', '#92400E'],
+  '4 manquantes': ['#FEE2E2', '#991B1B'],
+  '3 manquantes': ['#FEF3C7', '#92400E'],
+  '5 manquantes': ['#FEE2E2', '#991B1B']
+};
+
+const ELEVES = [
+  { mat: 'AD-2312', nom: 'Aïchata Bagayoko', moy: '15,2', rang: '1ᵉʳ', abs: '0', tuteur: 'M. Modibo Bagayoko' },
+  { mat: 'AD-2287', nom: 'Sory Ibrahima Touré', moy: '14,6', rang: '2ᵉ', abs: '1 j.', tuteur: 'Mme Kadidia Touré' },
+  { mat: 'AD-2301', nom: 'Mariam Traoré', moy: '14,1', rang: '3ᵉ', abs: '0', tuteur: 'M. Salif Traoré' },
+  { mat: 'AD-2294', nom: 'Adama Sangaré', moy: '13,3', rang: '4ᵉ', abs: '2 j.', tuteur: 'Mme Djeneba Sangaré' },
+  { mat: 'AD-2330', nom: 'Fanta Diakité', moy: '12,8', rang: '5ᵉ', abs: '1 j.', tuteur: 'M. Yacouba Diakité' },
+  { mat: 'AD-2276', nom: 'Boubacar Sissoko', moy: '11,4', rang: '6ᵉ', abs: '4 j.', tuteur: 'Mme Oumou Sissoko' }
+];
+
+const NOTES_INIT = [
+  { nom: 'Aïchata Bagayoko', d1: '16', d2: '15', co: '15', app: 'Excellent trimestre, très régulière.' },
+  { nom: 'Sory Ibrahima Touré', d1: '14', d2: '15', co: '15', app: 'Bon niveau, participe bien.' },
+  { nom: 'Mariam Traoré', d1: '13', d2: '14', co: '15', app: 'Progrès nets en géométrie.' },
+  { nom: 'Adama Sangaré', d1: '12', d2: '13', co: '14', app: 'Ensemble satisfaisant.' },
+  { nom: 'Fanta Diakité', d1: '13', d2: '12', co: '', app: 'Compo non rendue, à régulariser.' },
+  { nom: 'Boubacar Sissoko', d1: '9', d2: '11', co: '12', app: 'Doit travailler les exercices.' },
+  { nom: 'Kadiatou Coulibaly', d1: '11', d2: '10', co: '11', app: 'Manque de méthode.' },
+  { nom: 'Ousmane Dembélé', d1: '15', d2: '14', co: '', app: 'Absent le jour de la composition.' }
+];
+
+const APPEL_INIT = [
+  { nom: 'Aïchata Bagayoko', ini: 'AB', note: 'Aucune absence ce trimestre', st: 'P' },
+  { nom: 'Adama Sangaré', ini: 'AS', note: '2 absences justifiées', st: 'P' },
+  { nom: 'Boubacar Sissoko', ini: 'BS', note: '4 absences · tuteur alerté', st: 'A' },
+  { nom: 'Fanta Diakité', ini: 'FD', note: 'Retard fréquent le matin', st: 'R' },
+  { nom: 'Kadiatou Coulibaly', ini: 'KC', note: 'Aucune absence ce trimestre', st: 'P' },
+  { nom: 'Mariam Traoré', ini: 'MT', note: 'Aucune absence ce trimestre', st: 'P' },
+  { nom: 'Ousmane Dembélé', ini: 'OD', note: 'Certificat médical en cours', st: 'E' },
+  { nom: 'Sory Ibrahima Touré', ini: 'ST', note: '1 absence justifiée', st: 'P' }
+];
+
+const CONVS = [
+  { nom: 'Parents — 11ᵉ TSE', ini: '11', heure: '08:42', extrait: 'Diffusion : réunion de parents samedi 17 janvier à 9h.', sous: 'Diffusion à 24 familles · réponses désactivées', lu: '21 / 24 lus' },
+  { nom: 'Corps enseignant', ini: 'CE', heure: 'hier', extrait: 'Saisie des notes du T2 à clôturer avant le 24 janvier.', sous: '22 enseignants', lu: '19 / 22 lus' },
+  { nom: 'Mme Kadidia Touré', ini: 'KT', heure: 'hier', extrait: 'Justificatif d\u2019absence envoyé pour Sory Ibrahima.', sous: 'Tutrice de Sory Ibrahima Touré — 11ᵉ TSE', lu: 'Lu à 14:20' },
+  { nom: 'Parents — 9ᵉ B', ini: '9B', heure: 'lun.', extrait: 'Diffusion : rappel sur les absences répétées du matin.', sous: 'Diffusion à 21 familles', lu: '18 / 21 lus' },
+  { nom: 'M. Cheick Traoré', ini: 'CT', heure: 'lun.', extrait: 'Demande d\u2019annulation du cours de jeudi 9h30.', sous: 'Physique-Chimie · lycée', lu: 'Lu à 07:55' }
+];
+
+const MSGS = [
+  [
+    { auteur: 'Ibrahim Samaké — Censeur', texte: 'Chers parents, la réunion du 2ᵉ trimestre se tiendra samedi 17 janvier à 9h dans la cour de l\u2019école. Les bulletins seront remis à cette occasion.', heure: '08:42', moi: true },
+    { auteur: 'Système OROKIA', texte: 'Notification envoyée à 24 familles. SMS de secours envoyé aux 3 familles sans application installée.', heure: '08:43', moi: false }
+  ],
+  [
+    { auteur: 'Ibrahim Samaké — Censeur', texte: 'La saisie des notes du 2ᵉ trimestre doit être clôturée avant le vendredi 24 janvier, 17h. Les conseils de classe démarrent le lundi 27.', heure: 'hier · 16:10', moi: true },
+    { auteur: 'Sékou Diallo — Mathématiques', texte: 'Compris. Il me manque encore les compositions de deux élèves de 11ᵉ TSE.', heure: 'hier · 16:38', moi: false }
+  ],
+  [
+    { auteur: 'Kadidia Touré', texte: 'Bonjour, Sory Ibrahima était absent lundi pour raison médicale. Je joins le certificat du centre de santé de Médina Coura.', heure: 'hier · 09:05', moi: false },
+    { auteur: 'Ibrahim Samaké — Censeur', texte: 'Bien reçu, madame. L\u2019absence est enregistrée comme excusée.', heure: 'hier · 14:20', moi: true }
+  ],
+  [
+    { auteur: 'Ibrahim Samaké — Censeur', texte: 'Nous constatons des retards répétés le matin en 9ᵉ B. L\u2019appel est désormais fait à 7h35 précises.', heure: 'lun. · 07:40', moi: true }
+  ],
+  [
+    { auteur: 'Cheick Traoré — Physique-Chimie', texte: 'Je serai absent jeudi matin. Puis-je annuler le cours de 9h30 en 11ᵉ TSE et le rattraper samedi ?', heure: 'lun. · 07:50', moi: false },
+    { auteur: 'Ibrahim Samaké — Censeur', texte: 'Annulation validée, les familles sont prévenues. Le rattrapage de samedi 10h est ajouté à l\u2019emploi du temps.', heure: 'lun. · 07:55', moi: true }
+  ]
+];
+
+const BULLETIN = [
+  { mat: 'Mathématiques', coef: 4, d1: '16', d2: '15', co: '15', moy: '15,25', mc: '12,4', app: 'Excellent trimestre, très régulière.', prof: 'S. Diallo' },
+  { mat: 'Physique-Chimie', coef: 4, d1: '14', d2: '13', co: '14', moy: '13,75', mc: '11,8', app: 'Bon raisonnement expérimental.', prof: 'C. Traoré' },
+  { mat: 'SVT', coef: 3, d1: '15', d2: '14', co: '16', moy: '15,25', mc: '12,9', app: 'Travail sérieux et soigné.', prof: 'F. Sidibé' },
+  { mat: 'Français', coef: 2, d1: '13', d2: '14', co: '13', moy: '13,25', mc: '12,1', app: 'Expression écrite en progrès.', prof: 'A. Coulibaly' },
+  { mat: 'Anglais', coef: 2, d1: '16', d2: '15', co: '17', moy: '16,25', mc: '13,0', app: 'Très bonne participation orale.', prof: 'M. Keïta' },
+  { mat: 'Histoire-Géographie', coef: 2, d1: '12', d2: '13', co: '12', moy: '12,25', mc: '11,6', app: 'Doit approfondir les repères.', prof: 'B. Dembélé' },
+  { mat: 'Philosophie', coef: 2, d1: '14', d2: '13', co: '14', moy: '13,75', mc: '11,9', app: 'Argumentation structurée.', prof: 'A. Maïga' },
+  { mat: 'ECM', coef: 1, d1: '17', d2: '16', co: '17', moy: '16,75', mc: '14,2', app: 'Très bon esprit civique.', prof: 'B. Dembélé' },
+  { mat: 'Informatique', coef: 1, d1: '18', d2: '17', co: '18', moy: '17,75', mc: '14,8', app: 'Autonome et curieuse.', prof: 'O. Cissé' },
+  { mat: 'EPS', coef: 1, d1: '14', d2: '15', co: '14', moy: '14,25', mc: '13,5', app: 'Assidue et volontaire.', prof: 'I. Bagayoko' }
+];
+
+const ANNONCES = [
+  { titre: 'Réunion de parents — 2ᵉ trimestre', cible: 'Toutes les familles du lycée', date: '15 janv. · 08:42', statut: 'Publiée', corps: 'La remise des bulletins du 2ᵉ trimestre aura lieu samedi 17 janvier à 9h dans la cour de l\u2019école.' },
+  { titre: 'Clôture de la saisie des notes', cible: 'Corps enseignant', date: '14 janv. · 16:10', statut: 'Publiée', corps: 'La saisie doit être terminée avant le vendredi 24 janvier à 17h. Conseils de classe à partir du lundi 27.' },
+  { titre: 'Versement du 2ᵉ tiers de l\u2019écolage', cible: 'Familles avec solde ouvert (38)', date: '12 janv. · 10:00', statut: 'Programmée', corps: 'Le 2ᵉ tiers, soit 45 000 FCFA, est à régler au secrétariat avant le 31 janvier.' },
+  { titre: 'Préparation au DEF — séances de soutien', cible: '9ᵉ A et 9ᵉ B', date: '09 janv. · 07:30', statut: 'Brouillon', corps: 'Des séances de soutien en mathématiques et français sont proposées le samedi matin.' }
+];
+
+const COMPTES = [
+  { nom: 'Ibrahim Samaké', role: 'Censeur', portee: 'Établissement', etat: 'Actif', a2f: 'Activée', vu: 'Il y a 4 min' },
+  { nom: 'Aminata Dolo', role: 'Directrice', portee: 'Établissement', etat: 'Actif', a2f: 'Activée', vu: 'Hier · 18:20' },
+  { nom: 'Mariam Kouyaté', role: 'Secrétaire', portee: 'Inscriptions, écolage', etat: 'Actif', a2f: 'Non activée', vu: 'Aujourd\u2019hui · 07:55' },
+  { nom: 'Sékou Diallo', role: 'Enseignant', portee: '4 classes affectées', etat: 'Actif', a2f: 'Non requise', vu: 'Il y a 26 min' },
+  { nom: 'Cheick Traoré', role: 'Enseignant', portee: '3 classes affectées', etat: 'Suspendu', a2f: 'Non requise', vu: '12 janv.' }
+];
+
+const JOURNAL = [
+  { qui: 'Sékou Diallo', act: 'Modification d\u2019une note après soumission — Fanta Diakité, Maths T2', q: '12 → 14', t: 'Il y a 26 min' },
+  { qui: 'Ibrahim Samaké', act: 'Validation des notes — 11ᵉ TSS, Physique-Chimie', q: '19 élèves', t: 'Aujourd\u2019hui · 08:10' },
+  { qui: 'Mariam Kouyaté', act: 'Inscription d\u2019un élève — 10ᵉ tronc commun', q: 'AD-2341', t: 'Hier · 15:02' },
+  { qui: 'Aminata Dolo', act: 'Suspension d\u2019un compte enseignant', q: 'C. Traoré', t: '12 janv. · 09:40' }
+];
+
+class Component extends DCLogic {
+  state = {
+    screen: 0, niveau: 'tous', classeIdx: null,
+    notes: NOTES_INIT.map(n => ({ ...n })), valide: false,
+    appelOuvert: false, appel: APPEL_INIT.map(a => ({ ...a })),
+    conv: 0
+  };
+
+  go(n) { return () => this.setState({ screen: n }); }
+
+  moyenne(n) {
+    const v = s => (s === '' || s == null || isNaN(parseFloat(s))) ? null : parseFloat(s);
+    const a = v(n.d1), b = v(n.d2), c = v(n.co);
+    if (a == null || b == null || c == null) return null;
+    return (a + b + c * 2) / 4;
+  }
+
+  renderVals() {
+    const st = this.state, out = {};
+    for (let i = 0; i < 12; i++) {
+      out['go' + i] = this.go(i);
+      out['s' + i] = st.screen === i;
+      out['bg' + i] = st.screen === i ? ACT : IDLE;
+      out['fg' + i] = st.screen === i ? ACTFG : IDLEFG;
+    }
+
+    const chip = on => on ? ['#102A43', '#FFFFFF'] : ['#FFFFFF', '#475569'];
+    const [tb, tf] = chip(st.niveau === 'tous'), [cb, cf] = chip(st.niveau === 'college'), [lb, lf] = chip(st.niveau === 'lycee');
+    out.nvTousBg = tb; out.nvTousFg = tf; out.nvColBg = cb; out.nvColFg = cf; out.nvLycBg = lb; out.nvLycFg = lf;
+    const [pb, pf] = chip(st.niveau === 'primaire');
+    out.nvPriBg = pb; out.nvPriFg = pf;
+    out.setNiveauPrimaire = () => this.setState({ niveau: 'primaire', classeIdx: null });
+    out.setNiveauTous = () => this.setState({ niveau: 'tous', classeIdx: null });
+    out.setNiveauCollege = () => this.setState({ niveau: 'college', classeIdx: null });
+    out.setNiveauLycee = () => this.setState({ niveau: 'lycee', classeIdx: null });
+
+    const filtered = CLASSES.filter(c => st.niveau === 'tous' || c.niveau === st.niveau);
+    out.classes = filtered.map(c => {
+      const [bb, bf] = BADGE[c.statut] || ['#F1F5F9', '#475569'];
+      const pres = parseFloat(c.presence.replace(',', '.'));
+      return { ...c, badgeBg: bb, badgeFg: bf, presColor: pres < 90 ? '#DC2626' : '#16A34A',
+        ouvrir: () => this.setState({ classeIdx: CLASSES.indexOf(c) }) };
+    });
+    out.nbClasses = filtered.length;
+
+    const co = st.classeIdx != null ? CLASSES[st.classeIdx] : null;
+    out.classeOuverte = !!co;
+    out.classeNom = co ? co.nom : '';
+    out.classeProf = co ? co.prof : '';
+    out.classeMoy = co ? co.moyenne : '';
+    out.eleves = ELEVES.map(e => ({ ...e, ouvrir: () => this.setState({ screen: 6 }) }));
+    out.fermerClasse = () => this.setState({ classeIdx: null });
+
+    const moys = st.notes.map(n => this.moyenne(n));
+    const ranked = moys.map((m, i) => ({ m, i })).filter(x => x.m != null).sort((a, b) => b.m - a.m);
+    const rangOf = {}; ranked.forEach((x, k) => { rangOf[x.i] = (k === 0 ? '1ᵉʳ' : (k + 1) + 'ᵉ'); });
+    const fmt = v => v == null ? '—' : v.toFixed(2).replace('.', ',');
+    out.notes = st.notes.map((n, i) => {
+      const m = moys[i], vide = n.co === '';
+      const set = key => e => {
+        const val = e.target.value;
+        this.setState(s => { const c = s.notes.map(x => ({ ...x })); c[i][key] = val; return { notes: c }; });
+      };
+      return { nom: n.nom, d1: n.d1, d2: n.d2, co: n.co, app: n.app,
+        setD1: set('d1'), setD2: set('d2'), setCo: set('co'),
+        moy: fmt(m), rang: rangOf[i] || '—',
+        moyColor: m == null ? '#94A3B8' : (m < 10 ? '#DC2626' : '#172033'),
+        coBorder: vide ? '#F97316' : '#E2E8F0',
+        rowBg: vide ? '#FFFBF5' : '#FFFFFF',
+        stickyBg: vide ? '#FFFBF5' : '#FFFFFF' };
+    });
+    const nbVides = st.notes.filter(n => n.co === '').length;
+    out.manquantes = nbVides ? nbVides + ' note(s) de composition manquante(s) — signalées en orange' : 'Aucune note manquante';
+    const valides = moys.filter(m => m != null);
+    out.moyClasse = valides.length ? (valides.reduce((a, b) => a + b, 0) / valides.length).toFixed(2).replace('.', ',') : '—';
+    out.saveLabel = st.valide ? 'Verrouillé après validation' : 'Brouillon enregistré automatiquement';
+    out.validLabel = st.valide ? 'Notes validées' : 'Valider les notes';
+    out.validBg = st.valide ? '#16A34A' : '#2563EB';
+    out.valider = () => this.setState(s => ({ valide: !s.valide }));
+
+    out.appelOuvert = st.appelOuvert;
+    out.appelLabel = st.appelOuvert ? 'Fermer l\u2019appel' : 'Faire l\u2019appel';
+    out.ouvrirAppel = () => this.setState(s => ({ appelOuvert: !s.appelOuvert }));
+    out.tousPresents = () => this.setState(s => ({ appel: s.appel.map(a => ({ ...a, st: 'P' })) }));
+    const TONE = { P: ['#DCFCE7', '#166534', '#86EFAC'], A: ['#FEE2E2', '#991B1B', '#FCA5A5'], R: ['#FFEDD5', '#9A3412', '#FDBA74'], E: ['#DBEAFE', '#1E40AF', '#93C5FD'] };
+    out.appel = st.appel.map((a, i) => {
+      const o = { nom: a.nom, ini: a.ini, note: a.note };
+      ['P', 'A', 'R', 'E'].forEach(k => {
+        const on = a.st === k, t = TONE[k];
+        o[k.toLowerCase() + 'Bg'] = on ? t[0] : '#FFFFFF';
+        o[k.toLowerCase() + 'Fg'] = on ? t[1] : '#64748B';
+        o[k.toLowerCase() + 'Bd'] = on ? t[2] : '#E2E8F0';
+        o['set' + k] = () => this.setState(s => { const c = s.appel.map(x => ({ ...x })); c[i].st = k; return { appel: c }; });
+      });
+      return o;
+    });
+    out.nbPresents = st.appel.filter(a => a.st === 'P').length;
+    out.nbAbsents = st.appel.filter(a => a.st === 'A').length;
+    out.nbRetards = st.appel.filter(a => a.st === 'R').length;
+
+    out.convs = CONVS.map((c, i) => ({
+      nom: c.nom, ini: c.ini, heure: c.heure, extrait: c.extrait,
+      bg: st.conv === i ? '#EFF6FF' : '#FFFFFF',
+      avBg: i === 0 || i === 3 ? '#FFEDD5' : '#EFF6FF',
+      avFg: i === 0 || i === 3 ? '#9A3412' : '#2563EB',
+      select: () => this.setState({ conv: i })
+    }));
+    out.convNom = CONVS[st.conv].nom;
+    out.convSous = CONVS[st.conv].sous;
+    out.convLu = CONVS[st.conv].lu;
+    out.bulletin = BULLETIN.map(b => ({ ...b,
+      total: (parseFloat(b.moy.replace(',', '.')) * b.coef).toFixed(2).replace('.', ','),
+      barre: (parseFloat(b.moy.replace(',', '.')) / 20 * 100).toFixed(0) + '%',
+      moyColor: parseFloat(b.moy.replace(',', '.')) < 10 ? '#DC2626' : '#111827' }));
+    out.annonces = ANNONCES.map(a => {
+      const t = a.statut === 'Publiée' ? ['#DCFCE7', '#166534'] : a.statut === 'Programmée' ? ['#DBEAFE', '#1E40AF'] : ['#F1F5F9', '#475569'];
+      return { ...a, bg: t[0], fg: t[1] };
+    });
+    out.comptes = COMPTES.map(c => ({ ...c,
+      etatBg: c.etat === 'Actif' ? '#DCFCE7' : '#FEE2E2',
+      etatFg: c.etat === 'Actif' ? '#166534' : '#991B1B',
+      a2fColor: c.a2f === 'Non activée' ? '#C2410C' : '#64748B' }));
+    out.journal = JOURNAL;
+    out.cahier = [
+      { date: 'Jeudi 15 janvier', heure: '07h30 – 09h30', titre: 'Suites numériques — raisonnement par récurrence', contenu: 'Définition d\u2019une suite récurrente, principe de récurrence, trois exemples traités au tableau.', devoir: 'Exercices 14 à 18 page 87, à rendre vendredi 16 janvier 07h30.', etat: 'Signé par 19 / 24 familles' },
+      { date: 'Mardi 13 janvier', heure: '07h30 – 09h30', titre: 'Correction de la composition du 1ᵉʳ trimestre', contenu: 'Reprise des questions 3 et 5, méthode de rédaction attendue au baccalauréat.', devoir: '', etat: 'Signé par 24 / 24 familles' },
+      { date: 'Lundi 12 janvier', heure: '15h00 – 16h00', titre: 'Limites de suites — premières notions', contenu: 'Suites convergentes et divergentes, lecture graphique, vocabulaire.', devoir: 'Lire le cours pages 82 à 86.', etat: 'Signé par 22 / 24 familles' }
+    ];
+    out.stats = [
+      { niveau: '1ʳᵉ à 3ᵉ année', eleves: 81, moy: '7,4', pres: '95,7 %', ecart: '+0,2', bareme: 10 },
+      { niveau: '4ᵉ à 6ᵉ année', eleves: 71, moy: '7,0', pres: '93,3 %', ecart: '−0,1', bareme: 10 },
+      { niveau: '7ᵉ', eleves: 50, moy: '11,8', pres: '93,5 %', ecart: '+0,3' },
+      { niveau: '8ᵉ', eleves: 23, moy: '12,1', pres: '95,0 %', ecart: '+0,6' },
+      { niveau: '9ᵉ', eleves: 43, moy: '11,2', pres: '88,8 %', ecart: '−0,4' },
+      { niveau: '10ᵉ', eleves: 25, moy: '12,9', pres: '94,6 %', ecart: '+0,5' },
+      { niveau: '11ᵉ', eleves: 43, moy: '13,1', pres: '95,0 %', ecart: '+0,9' },
+      { niveau: '12ᵉ', eleves: 16, moy: '12,6', pres: '92,1 %', ecart: '+0,2' }
+    ].map(s => ({ ...s, ecartFg: s.ecart.indexOf('\u2212') === 0 ? '#DC2626' : '#16A34A',
+      presFg: parseFloat(s.pres) < 90 ? '#DC2626' : '#16A34A',
+      moyAff: s.moy + ' / ' + (s.bareme || 20),
+      barre: (parseFloat(s.moy.replace(',', '.')) / (s.bareme || 20) * 100).toFixed(0) + '%' }));
+
+    out.msgs = MSGS[st.conv].map(m => ({
+      auteur: m.auteur, texte: m.texte, heure: m.heure,
+      align: m.moi ? 'flex-end' : 'flex-start',
+      bg: m.moi ? '#2563EB' : '#FFFFFF',
+      fg: m.moi ? '#FFFFFF' : '#172033',
+      bd: m.moi ? '#2563EB' : '#E2E8F0'
+    }));
+
+    return out;
+  }
+}
+</script>
+</body>
+</html>

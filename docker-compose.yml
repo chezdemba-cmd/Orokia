@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: orokia-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: orokia
+      POSTGRES_PASSWORD: orokia_dev_password
+      POSTGRES_DB: orokia
+    ports:
+      - "5432:5432"
+    volumes:
+      - orokia_pgdata:/var/lib/postgresql/data
+
+volumes:
+  orokia_pgdata:
