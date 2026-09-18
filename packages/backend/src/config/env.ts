@@ -7,6 +7,8 @@ const envSchema = z.object({
   JWT_ACCESS_SECRET: z.string().min(1, "JWT_ACCESS_SECRET est requis"),
   JWT_REFRESH_SECRET: z.string().min(1, "JWT_REFRESH_SECRET est requis"),
   OTP_HASH_SECRET: z.string().min(1, "OTP_HASH_SECRET est requis"),
+  // Optionnel en local ; requis en production pour autoriser l'appel du job d'escalade par Vercel Cron.
+  CRON_SECRET: z.string().min(1).optional(),
 });
 
 const parsed = envSchema.safeParse(process.env);

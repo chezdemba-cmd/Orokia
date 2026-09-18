@@ -1,11 +1,15 @@
 generator client {
-  provider   = "prisma-client-js"
-  engineType = "binary"
+  provider      = "prisma-client-js"
+  engineType    = "binary"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  // DATABASE_URL : connexion "pooled" (pgbouncer, port 6543 sur Supabase) — utilisée à l'exécution.
+  // DIRECT_URL : connexion directe (port 5432) — requise par Prisma Migrate, qui ne fonctionne pas via un pooler.
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 enum Role {

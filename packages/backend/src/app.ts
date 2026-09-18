@@ -25,6 +25,7 @@ import { tuitionRoutes } from "./modules/tuition/routes.js";
 import { payrollRoutes } from "./modules/payroll/routes.js";
 import { familyRoutes } from "./modules/family/routes.js";
 import { adminRoutes } from "./modules/admin/routes.js";
+import { cronRoutes } from "./modules/cron/routes.js";
 
 export async function buildApp() {
   const app = Fastify({
@@ -68,6 +69,7 @@ export async function buildApp() {
   await app.register(payrollRoutes, { prefix: "/payroll" });
   await app.register(familyRoutes, { prefix: "/family" });
   await app.register(adminRoutes, { prefix: "/admin" });
+  await app.register(cronRoutes, { prefix: "/internal/cron" });
 
   return app;
 }
