@@ -1,5 +1,6 @@
 import type { FastifyInstance, FastifyRequest } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
+import rateLimit from "@fastify/rate-limit";
 import {
   loginSchema,
   selectProfileSchema,
@@ -18,6 +19,9 @@ function isMobileClient(request: FastifyRequest): boolean {
 }
 
 export async function authRoutes(app: FastifyInstance) {
+  // Frein au brute-force sur le mot de passe et le code OTP — par IP.
+  await app.register(rateLimit, { max: 30, timeWindow: "1 minute" });
+
   const withTypes = app.withTypeProvider<ZodTypeProvider>();
 
   function setRefreshCookie(reply: import("fastify").FastifyReply, token: string) {
@@ -40,14 +44,18 @@ export async function authRoutes(app: FastifyInstance) {
     reply.send({ status: "AUTHENTICATED", accessToken });
   }
 
-  withTypes.post("/login", { schema: { body: loginSchema } }, async (request, reply) => {
-    const result = await withRlsBypass(app.prisma, (tx) => new AuthService(tx, app.prisma).login(request.body.telephone, request.body.motDePasse));
-    if (result.status === "AUTHENTICATED") {
-      issueSession(request, reply, result.accessToken, result.refreshToken);
-      return;
-    }
-    reply.send(result);
-  });
+  withTypes.post(
+    "/login",
+    { schema: { body: loginSchema }, config: { rateLimit: { max: 10, timeWindow: "1 minute" } } },
+    async (request, reply) => {
+      const result = await withRlsBypass(app.prisma, (tx) => new AuthService(tx, app.prisma).login(request.body.telephone, request.body.motDePasse));
+      if (result.status === "AUTHENTICATED") {
+        issueSession(request, reply, result.accessToken, result.refreshToken);
+        return;
+      }
+      reply.send(result);
+    },
+  );
 
   withTypes.post("/select-profile", { schema: { body: selectProfileSchema } }, async (request, reply) => {
     const result = await withRlsBypass(app.prisma, (tx) =>
@@ -60,10 +68,14 @@ export async function authRoutes(app: FastifyInstance) {
     reply.send(result);
   });
 
-  withTypes.post("/otp/verify", { schema: { body: otpVerifySchema } }, async (request, reply) => {
-    const result = await withRlsBypass(app.prisma, (tx) => new AuthService(tx, app.prisma).verifyOtp(request.body.challengeId, request.body.code));
-    issueSession(request, reply, result.accessToken, result.refreshToken);
-  });
+  withTypes.post(
+    "/otp/verify",
+    { schema: { body: otpVerifySchema }, config: { rateLimit: { max: 10, timeWindow: "1 minute" } } },
+    async (request, reply) => {
+      const result = await withRlsBypass(app.prisma, (tx) => new AuthService(tx, app.prisma).verifyOtp(request.body.challengeId, request.body.code));
+      issueSession(request, reply, result.accessToken, result.refreshToken);
+    },
+  );
 
   withTypes.post("/otp/resend", { schema: { body: otpResendSchema } }, async (request, reply) => {
     const result = await withRlsBypass(app.prisma, (tx) => new AuthService(tx, app.prisma).resendOtp(request.body.challengeId, request.body.channel));

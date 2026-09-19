@@ -7,7 +7,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "postinstall": "pnpm --filter @orokia/backend exec prisma generate",
+    "postinstall": "cd packages/backend && npx prisma generate",
     "dev": "pnpm --filter @orokia/shared build && pnpm --parallel --filter @orokia/shared --filter @orokia/backend --filter @orokia/web dev",
     "build": "pnpm -r --filter @orokia/shared --filter @orokia/backend --filter @orokia/web build",
     "build:api": "node scripts/build-api.mjs",
