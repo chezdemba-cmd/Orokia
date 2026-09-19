@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm --filter @orokia/shared build && pnpm --filter @orokia/web build",
+  "buildCommand": "pnpm --filter @orokia/backend exec prisma generate && pnpm --filter @orokia/shared build && pnpm --filter @orokia/web build",
   "outputDirectory": "packages/web/dist",
   "installCommand": "pnpm install --frozen-lockfile",
   "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }],
