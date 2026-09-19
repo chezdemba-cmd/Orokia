@@ -14,9 +14,17 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
   const app = await appPromise;
   await app.ready();
 
-  // Les routes Fastify (voir app.ts) ne portent pas le préfixe /api — le
-  // même que la réécriture faite par le proxy Vite en dev (vite.config.ts).
-  if (req.url) req.url = req.url.replace(/^\/api/, "") || "/";
+  // vercel.json réécrit /api/<chemin> vers /api/handler?path=<chemin> — le
+  // catch-all de fichier (api/[...slug].ts) ne matchait, de façon reproductible,
+  // que le premier segment sur ce projet ; on reconstruit donc le vrai chemin
+  // nous-mêmes à partir du paramètre de requête plutôt que de compter dessus.
+  if (req.url) {
+    const url = new URL(req.url, "http://internal");
+    const path = url.searchParams.get("path") ?? "";
+    url.searchParams.delete("path");
+    const qs = url.searchParams.toString();
+    req.url = `/${path}${qs ? `?${qs}` : ""}`;
+  }
 
   app.server.emit("request", req, res);
 }

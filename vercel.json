@@ -2,5 +2,9 @@
   "buildCommand": "pnpm --filter @orokia/shared build && pnpm --filter @orokia/web build && pnpm run build:api",
   "outputDirectory": "packages/web/dist",
   "installCommand": "pnpm install --frozen-lockfile",
+  "rewrites": [
+    { "source": "/api/:match*", "destination": "/api/handler?path=:match*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
   "crons": [{ "path": "/api/internal/cron/escalations", "schedule": "0 0 * * *" }]
 }
