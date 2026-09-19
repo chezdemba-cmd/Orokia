@@ -7,7 +7,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "pnpm --parallel --filter @orokia/backend --filter @orokia/web dev",
+    "dev": "pnpm --filter @orokia/shared build && pnpm --parallel --filter @orokia/shared --filter @orokia/backend --filter @orokia/web dev",
     "build": "pnpm -r --filter @orokia/shared --filter @orokia/backend --filter @orokia/web build",
     "test": "pnpm -r --filter @orokia/backend --filter @orokia/shared test",
     "test:integration": "pnpm --filter @orokia/backend test:integration",

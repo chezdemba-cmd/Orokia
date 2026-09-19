@@ -21,10 +21,13 @@ d'accès navigateur). Ce qui suit est à faire de ton côté.
 1. https://supabase.com → New Project. Choisis une région proche du Mali/Europe
    (ex. `eu-west` ou `eu-central`) pour la latence.
 2. Une fois créé : **Project Settings → Database → Connection string**.
-   Tu as besoin de deux URLs :
-   - **Connection pooling** (mode "Transaction", port `6543`) → c'est ton `DATABASE_URL`.
-   - **Direct connection** (port `5432`) → c'est ton `DIRECT_URL`.
+   Sans IPv6 (cas le plus courant, projet gratuit) Supabase fournit deux URLs
+   qui passent toutes les deux par le pooler partagé, sur des ports différents :
+   - **Transaction pooler** (port `6543`, `?pgbouncer=true`) → `DATABASE_URL`.
+   - **Session pooler** (port `5432`) → `DIRECT_URL`, utilisée par Prisma Migrate.
    Les deux utilisent le même mot de passe (celui choisi à la création du projet).
+   (Avec IPv6 ou l'add-on IPv4 payant, Supabase propose aussi une connexion
+   directe à `db.<projet>.supabase.co` — pas nécessaire ici.)
 
 ## 2. Appliquer les migrations sur Supabase (depuis ta machine)
 
