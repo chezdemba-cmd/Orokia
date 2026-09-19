@@ -10,6 +10,7 @@
     "postinstall": "pnpm --filter @orokia/backend exec prisma generate",
     "dev": "pnpm --filter @orokia/shared build && pnpm --parallel --filter @orokia/shared --filter @orokia/backend --filter @orokia/web dev",
     "build": "pnpm -r --filter @orokia/shared --filter @orokia/backend --filter @orokia/web build",
+    "build:api": "node scripts/build-api.mjs",
     "test": "pnpm -r --filter @orokia/backend --filter @orokia/shared test",
     "test:integration": "pnpm --filter @orokia/backend test:integration",
     "lint": "pnpm -r lint",
@@ -20,6 +21,11 @@
     "db:reset": "pnpm --filter @orokia/backend prisma:reset"
   },
   "devDependencies": {
+    "esbuild": "^0.28.2",
     "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@node-rs/argon2": "^2.2.1",
+    "@prisma/client": "^5.22.0"
   }
 }

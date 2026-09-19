@@ -11,3 +11,5 @@ build/
 coverage/
 packages/backend/prisma/dev.db
 pgdata/
+api/_bundled-app.cjs
+.vercel/

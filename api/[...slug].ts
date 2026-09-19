@@ -1,5 +1,10 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
-import { buildApp } from "../packages/backend/src/app.js";
+// Généré au build par scripts/build-api.mjs (voir vercel.json) — un seul
+// fichier CJS autonome, plutôt que de compter sur Vercel pour retrouver les
+// dépendances d'un monorepo pnpm (symlinks workspace) au moment de préparer
+// la fonction.
+// @ts-expect-error — généré au build, absent avant `pnpm run build:api`.
+import { buildApp } from "./_bundled-app.cjs";
 
 // Réutilisé entre invocations "chaudes" de la même fonction — évite de
 // reconstruire l'app Fastify (et une nouvelle connexion Prisma) à chaque requête.

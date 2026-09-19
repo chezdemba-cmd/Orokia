@@ -9,7 +9,17 @@ packageExtensionsChecksum: sha256-zoPr7isK5W1LxC9JGaxDCtWFOOKX4XYCfPK5/2svKsY=
 importers:
 
   .:
+    dependencies:
+      '@node-rs/argon2':
+        specifier: ^2.2.1
+        version: 2.2.1
+      '@prisma/client':
+        specifier: ^5.22.0
+        version: 5.22.0(prisma@5.22.0)
     devDependencies:
+      esbuild:
+        specifier: ^0.28.2
+        version: 0.28.2
       typescript:
         specifier: ^5.6.3
         version: 5.9.3
