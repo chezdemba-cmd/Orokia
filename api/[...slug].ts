@@ -3,7 +3,6 @@ import type { IncomingMessage, ServerResponse } from "node:http";
 // fichier CJS autonome, plutôt que de compter sur Vercel pour retrouver les
 // dépendances d'un monorepo pnpm (symlinks workspace) au moment de préparer
 // la fonction.
-// @ts-expect-error — généré au build, absent avant `pnpm run build:api`.
 import { buildApp } from "./_bundled-app.cjs";
 
 // Réutilisé entre invocations "chaudes" de la même fonction — évite de
